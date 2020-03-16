@@ -1,6 +1,15 @@
 .sidebar__title
   margin-bottom: 20px
 
+  &:before
+    content: ''
+    background-color: #000
+    width: 42px
+    height: 2px
+    display: block
+    margin: 0 auto
+    margin-bottom: 15px
+
   a
     font-size: 18px
     text-transform: uppercase
@@ -54,9 +63,24 @@
       font-weight: bold
       color: $active-color
 
+    &.link
+      margin: 10px 0
+
 .sidebar__social
   margin-bottom: 20px
+
+  .social
+    margin: 0 5px
 
 .sidebar__copyright
   color: $light-body-color
   font-size: 13px
+
+.sidebar__logo__container
+  display: flex
+  align-items: center
+  justify-content: center
+  padding: 20px
+
+.sidebar__logo
+  width: 60%
