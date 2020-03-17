@@ -9,16 +9,17 @@ export default ({ data }) => {
   return (
     <Layout>
       <article className='sheet'>
-        <HelmetDatoCms seo={data.product.seoMetaTags} />
+        <HelmetDatoCms seo={data.wine.seoMetaTags} />
         <div className='sheet__inner'>
           <div className='sheet__gallery'>
-            <Img fluid={data.product.photo.fluid} />
+            <Img fluid={data.wine.photo.fluid} />
           </div>
-          <h1 className='sheet__title'>{data.product.name}</h1>
-          <p className='sheet__lead'>{data.product.description}</p>
-          <p>
-            {data.product.price} € | {data.product.conditionnement}
+          <h1 className='sheet__title'>{data.wine.name}</h1>
+          <p className='sheet__lead'>{data.wine.description}</p>
+          <p className='sheet__lead'>
+            {data.wine.color} | {data.wine.category}
           </p>
+          <p>{data.wine.price} €</p>
           <button className='sheet__button'>Ajouter au panier</button>
         </div>
       </article>
@@ -27,21 +28,19 @@ export default ({ data }) => {
 };
 
 export const query = graphql`
-  query ProductQuery($slug: String!) {
-    product: datoCmsProduct(slug: { eq: $slug }) {
+  query WineQuery($slug: String!) {
+    wine: datoCmsWine(slug: { eq: $slug }) {
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
       name
-      category {
-        title
-      }
-      conditionnement
+      category
+      color
       description
       price
       slug
       id
-      minimum
+      color
       photo {
         url
         fluid(maxWidth: 300, imgixParams: { fm: "jpg", auto: "compress" }) {

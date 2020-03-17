@@ -6,7 +6,8 @@ import Masonry from 'react-masonry-component';
 import Layout from '../components/layout';
 
 export default ({ data }) => {
-  const products = data.category.slug === 'vins' ? data.wines : data.products;
+  const isWine = data.category.slug === 'vins';
+  const products = isWine ? data.wines : data.products;
   return (
     <Layout>
       <article className='sheet'>
@@ -27,13 +28,23 @@ export default ({ data }) => {
             {products.edges.map(({ node: product }) => (
               <div key={product.id} className='showcase__item'>
                 <figure className='card'>
-                  <Link to={`/produits/${product.slug}`} className='card__image'>
+                  <Link
+                    to={`/${isWine ? 'vins' : 'produits'}/${product.slug}`}
+                    className='card__image'
+                  >
                     <Img fluid={product.photo.fluid} />
                   </Link>
-                  <figcaption className='card__caption'>
+                  <figcaption className='card__caption card__caption-product'>
                     <h6 className='card__title'>
                       <Link to={`/produits/${product.slug}`}>{product.name}</Link>
                     </h6>
+                    {isWine ? (
+                      <p>{product.price}€ /bouteille</p>
+                    ) : (
+                      <p>
+                        {product.price}€ | {product.conditionnement}
+                      </p>
+                    )}
                   </figcaption>
                 </figure>
               </div>
@@ -72,6 +83,8 @@ export const query = graphql`
           id
           slug
           name
+          price
+          conditionnement
           photo {
             url
             fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {
@@ -87,6 +100,7 @@ export const query = graphql`
           id
           slug
           category
+          price
           name
           photo {
             url

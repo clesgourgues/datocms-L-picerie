@@ -53,6 +53,16 @@ exports.createPages = ({ graphql, actions }) => {
         });
         resolve();
       });
+      result.data.allDatoCmsWine.edges.map(({ node: wine }) => {
+        createPage({
+          path: `vins/${wine.slug}`,
+          component: path.resolve(`./src/templates/wine.js`),
+          context: {
+            slug: wine.slug
+          }
+        });
+        resolve();
+      });
     });
   });
 };
