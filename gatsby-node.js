@@ -14,8 +14,25 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
+        allDatoCmsProduct {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
+        allDatoCmsWine {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
       }
     `).then(result => {
+      if (result.errors) {
+        reject(result.errors);
+      }
       result.data.allDatoCmsCategory.edges.map(({ node: category }) => {
         createPage({
           path: `categories/${category.slug}`,
@@ -24,8 +41,18 @@ exports.createPages = ({ graphql, actions }) => {
             slug: category.slug
           }
         });
+        resolve();
       });
-      resolve();
+      result.data.allDatoCmsProduct.edges.map(({ node: product }) => {
+        createPage({
+          path: `produits/${product.slug}`,
+          component: path.resolve(`./src/templates/product.js`),
+          context: {
+            slug: product.slug
+          }
+        });
+        resolve();
+      });
     });
   });
 };

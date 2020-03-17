@@ -6,7 +6,7 @@ import Masonry from 'react-masonry-component';
 import Layout from '../components/layout';
 
 export default ({ data }) => {
-  console.log(data);
+  const products = data.category.slug === 'vins' ? data.wines : data.products;
   return (
     <Layout>
       <article className='sheet'>
@@ -24,15 +24,15 @@ export default ({ data }) => {
             <Img fluid={data.category.coverImage.fluid} />
           </div>
           <Masonry className='showcase'>
-            {data.products.edges.map(({ node: product }) => (
+            {products.edges.map(({ node: product }) => (
               <div key={product.id} className='showcase__item'>
                 <figure className='card'>
-                  <Link to={`/categories/produits/${product.slug}`} className='card__image'>
+                  <Link to={`/produits/${product.slug}`} className='card__image'>
                     <Img fluid={product.photo.fluid} />
                   </Link>
                   <figcaption className='card__caption'>
                     <h6 className='card__title'>
-                      <Link to={`/categories/produits/${product.slug}`}>{product.productName}</Link>
+                      <Link to={`/produits/${product.slug}`}>{product.name}</Link>
                     </h6>
                   </figcaption>
                 </figure>
@@ -53,6 +53,7 @@ export const query = graphql`
       }
       title
       excerpt
+      slug
       descriptionNode {
         childMarkdownRemark {
           html
@@ -65,12 +66,28 @@ export const query = graphql`
         }
       }
     }
-    products: allDatoCmsProduct {
+    products: allDatoCmsProduct(filter: { category: { slug: { eq: $slug } } }) {
       edges {
         node {
           id
           slug
-          productName
+          name
+          photo {
+            url
+            fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {
+              ...GatsbyDatoCmsSizes
+            }
+          }
+        }
+      }
+    }
+    wines: allDatoCmsWine {
+      edges {
+        node {
+          id
+          slug
+          category
+          name
           photo {
             url
             fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {
@@ -82,5 +99,3 @@ export const query = graphql`
     }
   }
 `;
-
-//filter: { category: { slug: { eq: $slug } } }

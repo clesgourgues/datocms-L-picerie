@@ -77,8 +77,8 @@ const TemplateWrapper = ({ children }) => {
               />
               <ul className='sidebar__menu'>
                 {data.allDatoCmsCategory.edges.map(({ node: category }) => (
-                  <li>
-                    <Link to={`categories/${category.slug}`}>{category.title}</Link>
+                  <li key={category.id}>
+                    <Link to={`/categories/${category.slug}`}>{category.title}</Link>
                   </li>
                 ))}
                 <li className='link'>
