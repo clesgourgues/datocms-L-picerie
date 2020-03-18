@@ -6,6 +6,12 @@ import Layout from '../components/layout';
 
 const IndexPage = ({ data }) => (
   <Layout>
+    <div
+      className='showcase__intro'
+      dangerouslySetInnerHTML={{
+        __html: data.datoCmsHome.introTextNode.childMarkdownRemark.html
+      }}
+    />
     <Masonry className='showcase'>
       {data.allDatoCmsCategory.edges.map(({ node: category }) => (
         <div key={category.id} className='showcase__item'>
@@ -14,9 +20,6 @@ const IndexPage = ({ data }) => (
               <Img fluid={category.coverImage.fluid} />
             </Link>
             <figcaption className='card__caption card__caption-category'>
-              <h6 className='card__title'>
-                <Link to={`/categories/${category.slug}`}>{category.title}</Link>
-              </h6>
               <div className='card__description'>
                 <p>{category.excerpt}</p>
               </div>
@@ -44,6 +47,13 @@ export const query = graphql`
               ...GatsbyDatoCmsSizes
             }
           }
+        }
+      }
+    }
+    datoCmsHome {
+      introTextNode {
+        childMarkdownRemark {
+          html
         }
       }
     }

@@ -13,17 +13,18 @@ export default ({ data }) => {
       <article className='sheet'>
         <HelmetDatoCms seo={data.category.seoMetaTags} />
         <div className='sheet__inner'>
-          <h1 className='sheet__title'>{data.category.title}</h1>
           <p className='sheet__lead'>{data.category.excerpt}</p>
+          <div className='sheet__gallery'>
+            <Img fluid={data.category.coverImage.fluid} />
+          </div>
+          {/*     <h1 className='sheet__title'>{data.category.title}</h1> */}
+
           <div
             className='sheet__body'
             dangerouslySetInnerHTML={{
               __html: data.category.descriptionNode.childMarkdownRemark.html
             }}
           />
-          <div className='sheet__gallery'>
-            <Img fluid={data.category.coverImage.fluid} />
-          </div>
           <Masonry className='showcase'>
             {products.edges.map(({ node: product }) => (
               <div key={product.id} className='showcase__item'>

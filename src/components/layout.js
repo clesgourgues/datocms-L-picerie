@@ -26,11 +26,6 @@ const TemplateWrapper = ({ children }) => {
             seoMetaTags {
               ...GatsbyDatoCmsSeoMetaTags
             }
-            introTextNode {
-              childMarkdownRemark {
-                html
-              }
-            }
             copyright
             logo {
               fluid(maxWidth: 450, imgixParams: { fm: "png", auto: "compress" }) {
@@ -59,7 +54,7 @@ const TemplateWrapper = ({ children }) => {
       `}
       render={data => (
         <div className={`container ${showMenu ? 'is-open' : ''}`}>
-          <Helmet htmlAttributes={{ lang: 'fr' }} />
+          <Helmet htmlAttributes={{ lang: 'fr-FR' }} />
           <HelmetDatoCms
             favicon={data.datoCmsSite.faviconMetaTags}
             seo={data.datoCmsHome.seoMetaTags}
@@ -69,13 +64,6 @@ const TemplateWrapper = ({ children }) => {
               <Link to='/'>
                 <Img fluid={data.datoCmsHome.logo.fluid} />
               </Link>
-              {/*          <h6 className='sidebar__title'>{data.datoCmsSite.globalSeo.siteName}</h6> */}
-              <div
-                className='sidebar__intro'
-                dangerouslySetInnerHTML={{
-                  __html: data.datoCmsHome.introTextNode.childMarkdownRemark.html
-                }}
-              />
               <ul className='sidebar__menu'>
                 {data.allDatoCmsCategory.edges.map(({ node: category }) => (
                   <li key={category.id}>
@@ -84,8 +72,9 @@ const TemplateWrapper = ({ children }) => {
                 ))}
                 <li className='link snipcart-checkout'>
                   <Link to='/about'>
-                    Mon caddy/mon compte
-                    <span className='snipcart-items-count'></span>
+                    Mon panier/mon compte
+                    <br />
+                    <span className='snipcart-items-count'></span> articles,
                     <span className='snipcart-total-price'></span>
                   </Link>
                 </li>

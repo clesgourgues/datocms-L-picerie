@@ -19,6 +19,13 @@ module.exports = {
       options: {
         apiKey: process.env.GATSBY_SNIPCART_API_KEY
       }
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`Passion One`, `Lato`],
+        display: 'swap'
+      }
     }
   ]
 };

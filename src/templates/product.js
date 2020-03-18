@@ -12,12 +12,13 @@ export default ({ data }) => {
       <article className='sheet'>
         <HelmetDatoCms seo={data.product.seoMetaTags} />
         <div className='sheet__inner'>
+          <h1 className='sheet__lead'>{data.product.name}</h1>
           <div className='sheet__gallery'>
             <Img fluid={data.product.photo.fluid} />
           </div>
-          <h1 className='sheet__title'>{data.product.name}</h1>
-          <p className='sheet__lead'>{data.product.description}</p>
-          <p className='sheet__lead'>{data.product.composition}</p>
+
+          <p className=''>{data.product.description}</p>
+          <p className=''>Composition: {data.product.composition}</p>
           <p>
             {data.product.price} € | {data.product.conditionnement}
           </p>
