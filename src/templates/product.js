@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
 import { graphql, Link } from 'gatsby';
 import Layout from '../components/layout';
+import Counter from '../components/Counter';
 
 export default ({ data }) => {
-  console.log(data);
+  const [quantity, setQuantity] = useState(1);
   return (
     <Layout>
       <article className='sheet'>
@@ -16,10 +17,24 @@ export default ({ data }) => {
           </div>
           <h1 className='sheet__title'>{data.product.name}</h1>
           <p className='sheet__lead'>{data.product.description}</p>
+          <p className='sheet__lead'>{data.product.composition}</p>
           <p>
             {data.product.price} € | {data.product.conditionnement}
           </p>
-          <button className='sheet__button'>Ajouter au panier</button>
+          <Counter quantity={quantity} setQuantity={setQuantity} />
+          <button
+            className='sheet__button snipcart-add-item'
+            data-item-id={data.product.id}
+            data-item-price={data.product.price}
+            data-item-image={data.product.photo.url}
+            data-item-name={data.product.name}
+            data-item-url={`/produits/${data.product.slug}`}
+            data-item-description={data.product.description}
+            data-item-quantity={quantity}
+            data-item-has-taxes-included='true'
+          >
+            Ajouter au panier
+          </button>
         </div>
       </article>
     </Layout>
@@ -38,6 +53,7 @@ export const query = graphql`
       }
       conditionnement
       description
+      composition
       price
       slug
       id

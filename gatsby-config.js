@@ -1,8 +1,8 @@
-require('dotenv').config()
+require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: `Creative Portfolio`,
+    title: `Creative Portfolio`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -11,8 +11,14 @@ module.exports = {
     {
       resolve: `gatsby-source-datocms`,
       options: {
-        apiToken: process.env.DATO_API_TOKEN,
-      },
+        apiToken: process.env.DATO_API_TOKEN
+      }
     },
-  ],
-}
+    {
+      resolve: 'gatsby-plugin-snipcartv3',
+      options: {
+        apiKey: process.env.GATSBY_SNIPCART_API_KEY
+      }
+    }
+  ]
+};

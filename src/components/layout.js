@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
-import { StaticQuery, graphql } from 'gatsby';
+import { Link, StaticQuery, graphql } from 'gatsby';
+import Helmet from 'react-helmet';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
 import logo from '../assets/logo_maison_lascombes.svg';
@@ -59,6 +59,7 @@ const TemplateWrapper = ({ children }) => {
       `}
       render={data => (
         <div className={`container ${showMenu ? 'is-open' : ''}`}>
+          <Helmet htmlAttributes={{ lang: 'fr' }} />
           <HelmetDatoCms
             favicon={data.datoCmsSite.faviconMetaTags}
             seo={data.datoCmsHome.seoMetaTags}
@@ -68,7 +69,7 @@ const TemplateWrapper = ({ children }) => {
               <Link to='/'>
                 <Img fluid={data.datoCmsHome.logo.fluid} />
               </Link>
-              <h6 className='sidebar__title'>{data.datoCmsSite.globalSeo.siteName}</h6>
+              {/*          <h6 className='sidebar__title'>{data.datoCmsSite.globalSeo.siteName}</h6> */}
               <div
                 className='sidebar__intro'
                 dangerouslySetInnerHTML={{
@@ -81,8 +82,12 @@ const TemplateWrapper = ({ children }) => {
                     <Link to={`/categories/${category.slug}`}>{category.title}</Link>
                   </li>
                 ))}
-                <li className='link'>
-                  <Link to='/about'>Mon caddy</Link>
+                <li className='link snipcart-checkout'>
+                  <Link to='/about'>
+                    Mon caddy/mon compte
+                    <span className='snipcart-items-count'></span>
+                    <span className='snipcart-total-price'></span>
+                  </Link>
                 </li>
                 <li className='link'>
                   <Link to='/about'>A propos</Link>
@@ -118,8 +123,8 @@ const TemplateWrapper = ({ children }) => {
                     }}
                   />
                 </div>
-                <div className='mobile-header__logo'>
-                  <Link to='/'>{data.datoCmsSite.globalSeo.siteName}</Link>
+                <div className='mobile-header__logo link snipcart-checkout Snipcart-cart'>
+                  {/*   <Link to='/'>{data.datoCmsSite.globalSeo.siteName}</Link> */}
                 </div>
               </div>
             </div>
