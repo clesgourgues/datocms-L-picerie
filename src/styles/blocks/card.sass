@@ -3,6 +3,7 @@
 .card__image
   display: block
   position: relative
+  border: 1px solid $border-color
 
   img
     display: block
@@ -41,17 +42,17 @@
       opacity: .5
 
 .card__caption
-  padding: 20px 0
-  position: relative
   z-index: 3
   background-color: #fff
 
   &-category
+    position: absolute
+    top: 50px
+    left: 20px
 
   &-product
 
 .card__title
-  margin-top: -10px
 
   a
     text-transform: uppercase
@@ -64,7 +65,8 @@
       border-bottom: dotted 1px #9055a2
 
 .card__description
-  color: $light-body-color
-  font-size: 14px
-  line-height: 1.4
+  color: $dark-body-color
+  font-size: 30px
   text-align: center
+  padding: 5px 10px
+  font-family: $written

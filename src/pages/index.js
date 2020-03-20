@@ -19,11 +19,11 @@ const IndexPage = ({ data }) => (
             <Link to={`/categories/${category.slug}`} className='card__image'>
               <Img fluid={category.coverImage.fluid} />
             </Link>
-            <figcaption className='card__caption card__caption-category'>
+            {/*             <figcaption className='card__caption card__caption-category'>
               <div className='card__description'>
                 <p>{category.excerpt}</p>
               </div>
-            </figcaption>
+            </figcaption> */}
           </figure>
         </div>
       ))}

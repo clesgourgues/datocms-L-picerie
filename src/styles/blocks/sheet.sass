@@ -3,30 +3,38 @@
   background-color: white
   min-height: 100vh
 
-.sheet__inner
-  max-width: 600px
+.sheet__description
+  margin-bottom: 20px
 
 .sheet__title
-  font-size: 30px
+  font-size: 36px
   margin: 30px 0
   font-weight: bold
   color: $dark-body-color
   line-height: 1
 
 .sheet__lead
-  font-size: 16px
-  margin-bottom: 30px
+  font-size: 50px
+  font-family: $title
+  line-height: 40px
 
 .sheet__gallery
-
-.sheet__gallery,
   max-width: 350px
-  width: 50%
-  margin: 0 auto 30px auto
+  margin: 0 auto
+
+  &-image
+    margin: 50px auto
+    border: 1px solid $border-color
+
+.sheet__buy
+  display: flex
+  align-items: center
+  justify-content: flex-end
+  padding: 40px
 
 .sheet__body
   color: $light-body-color
-  font-size: 14px
+  font-size: 20px
   margin-bottom: 30px
 
   h1, h2, h3, h4, h5, h6, p, blockquote, pre, ul, ol
@@ -81,11 +89,15 @@
   float: right
   transition: all 0.3s ease-in
   cursor: pointer
+  margin-left: 40px
 
   &:hover
     background: $button
     color: white
     transition: all 0.3s ease-in
+
+.sheet__composition
+  margin: 20px 0
 
 @media screen and (min-width: 900px)
   .sheet
@@ -108,3 +120,6 @@
 
     blockquote
       padding-left: 40px
+
+  .sheet__gallery
+    width: 50%
