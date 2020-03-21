@@ -12,7 +12,11 @@ export default ({ data }) => {
     <Layout>
       <article className='sheet'>
         <HelmetDatoCms seo={data.product.seoMetaTags} />
-        <div className='sheet__inner'>
+        <div className='sheet__back link'>
+          <span className='sheet__back-icon'></span>
+          <Link to={`/${data.product.category.slug}`}> {data.product.category.title}</Link>
+        </div>
+        <div className='sheet__inner-product'>
           <h1 className='sheet__lead'>{data.product.name}</h1>
           <p className='sheet__description'>{data.product.description}</p>
           <p className='sheet__price'>
@@ -59,6 +63,7 @@ export const query = graphql`
       name
       category {
         title
+        slug
       }
       conditionnement
       description
