@@ -18,6 +18,9 @@ exports.createPages = ({ graphql, actions }) => {
           edges {
             node {
               slug
+              category {
+                slug
+              }
             }
           }
         }
@@ -35,7 +38,7 @@ exports.createPages = ({ graphql, actions }) => {
       }
       result.data.allDatoCmsCategory.edges.map(({ node: category }) => {
         createPage({
-          path: `categories/${category.slug}`,
+          path: `${category.slug}`,
           component: path.resolve(`./src/templates/category.js`),
           context: {
             slug: category.slug
@@ -45,7 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
       });
       result.data.allDatoCmsProduct.edges.map(({ node: product }) => {
         createPage({
-          path: `produits/${product.slug}`,
+          path: `${product.category.slug}/${product.slug}`,
           component: path.resolve(`./src/templates/product.js`),
           context: {
             slug: product.slug

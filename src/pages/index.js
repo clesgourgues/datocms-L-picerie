@@ -16,7 +16,7 @@ const IndexPage = ({ data }) => (
       {data.allDatoCmsCategory.edges.map(({ node: category }) => (
         <div key={category.id} className='showcase__item'>
           <figure className='card'>
-            <Link to={`/categories/${category.slug}`} className='card__image'>
+            <Link to={`/${category.slug}`} className='card__image card__image-category'>
               <Img fluid={category.coverImage.fluid} />
             </Link>
             {/*             <figcaption className='card__caption card__caption-category'>

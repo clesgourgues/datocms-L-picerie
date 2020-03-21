@@ -1,6 +1,5 @@
 {
-  "name": "Gatsby DatoCMS portfolio",
-  "previewImage": "https://raw.githubusercontent.com/datocms/gatsby-portfolio/master/preview.png",
+  "name": "La brasserie bordelaise boutique",
   "templateId": "portfolio",
   "deploymentType": "static",
   "buildCommand": "yarn build",

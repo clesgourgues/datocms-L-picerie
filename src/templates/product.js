@@ -7,7 +7,6 @@ import Counter from '../components/Counter';
 import Allergen from '../components/Allergen';
 
 export default ({ data }) => {
-  console.log(data.product);
   const [quantity, setQuantity] = useState(1);
   return (
     <Layout>

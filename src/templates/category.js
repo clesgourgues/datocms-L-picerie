@@ -2,7 +2,6 @@ import React from 'react';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
 import { graphql, Link } from 'gatsby';
-import Masonry from 'react-masonry-component';
 import Layout from '../components/layout';
 
 export default ({ data }) => {
@@ -25,19 +24,18 @@ export default ({ data }) => {
           </div>
           {/*     <h1 className='sheet__title'>{data.category.title}</h1> */}
 
-          <Masonry className='showcase'>
+          <div className='products'>
             {products.edges.map(({ node: product }) => (
-              <div key={product.id} className='showcase__item'>
-                <figure className='card'>
+              <figure key={product.id} className='products__item'>
                   <Link
-                    to={`/${isWine ? 'vins' : 'produits'}/${product.slug}`}
-                    className='card__image'
+                    to={`/${data.category.slug}/${product.slug}`}
+                    className='card__image card__image-product'
                   >
-                    <Img fluid={product.photo.fluid} />
+                    <Img fluid={product.photo.fluid} className='card__image-inner'/>
                   </Link>
                   <figcaption className='card__caption card__caption-product'>
                     <h6 className='card__title'>
-                      <Link to={`/produits/${product.slug}`}>{product.name}</Link>
+                      <Link to={`/${data.category.slug}/${product.slug}`}>{product.name}</Link>
                     </h6>
                     {isWine ? (
                       <p>{product.price}€ /bouteille</p>
@@ -48,9 +46,8 @@ export default ({ data }) => {
                     )}
                   </figcaption>
                 </figure>
-              </div>
             ))}
-          </Masonry>
+          </div>
         </div>
       </article>
     </Layout>

@@ -11,5 +11,27 @@
     path
     fill: black !important
 
+.snipcart-modal__container,
+.snipcart-modal,
+.snipcart-cart-header,
+.snipcart-item-list,
+.snipcart-cart__content
+    background-color: #fff
+
 .Snipcart-cart
     background: transparent url('../assets/cart.svg') no-repeat right
+    height: 30px
+    width: 30px
+
+.Snipcart__cart
+    position: absolute
+    top: 20px
+    right: 20px
+    font-size: 12px
+    display: flex
+    flex-direction: column
+    align-items: center
+
+@media screen and (max-width: 900px)
+    .Snipcart__cart
+        display: none

@@ -3,13 +3,20 @@ import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
+import { setConfig } from 'react-hot-loader';
 import Img from 'gatsby-image';
 import logo from '../assets/logo_maison_lascombes.svg';
+import Cart from '../components/Cart';
 
 import '../styles/index.sass';
 
+setConfig({ pureSFC: true });
+
 const TemplateWrapper = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState();
+  console.log('selectedCategory', selectedCategory);
+  console.log('showMenu', showMenu);
   return (
     <StaticQuery
       query={graphql`
@@ -59,25 +66,37 @@ const TemplateWrapper = ({ children }) => {
             favicon={data.datoCmsSite.faviconMetaTags}
             seo={data.datoCmsHome.seoMetaTags}
           />
+          <Cart />
           <div className='container__sidebar'>
             <div className='sidebar'>
+              <div className='container__sidebar-hamburger'>
+                <a
+                  href='#'
+                  onClick={e => {
+                    e.preventDefault();
+                    setShowMenu(!showMenu);
+                  }}
+                />
+              </div>
               <Link to='/'>
                 <Img fluid={data.datoCmsHome.logo.fluid} />
               </Link>
               <ul className='sidebar__menu'>
                 {data.allDatoCmsCategory.edges.map(({ node: category }) => (
-                  <li key={category.id}>
-                    <Link to={`/categories/${category.slug}`}>{category.title}</Link>
+                  <li
+                    key={category.id}
+                    onClick={e => {
+                      e.preventDefault();
+                      const id = e.target.id;
+                      setSelectedCategory(id);
+                    }}
+                    className={selectedCategory === category.title ? 'sidebar__menu-selected' : ''}
+                  >
+                    <Link to={`/${category.slug}`} id={category.title}>
+                      {category.title}
+                    </Link>
                   </li>
                 ))}
-                <li className='link snipcart-checkout'>
-                  <Link to='/about'>
-                    Mon panier/mon compte
-                    <br />
-                    <span className='snipcart-items-count'></span> articles,
-                    <span className='snipcart-total-price'></span>
-                  </Link>
-                </li>
                 <li className='link'>
                   <Link to='/about'>A propos</Link>
                 </li>

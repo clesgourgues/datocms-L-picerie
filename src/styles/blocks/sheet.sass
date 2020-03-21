@@ -4,7 +4,9 @@
   min-height: 100vh
 
 .sheet__description
-  margin-bottom: 20px
+
+.sheet__price
+  font-size: 20px
 
 .sheet__title
   font-size: 36px
@@ -29,8 +31,10 @@
 .sheet__buy
   display: flex
   align-items: center
-  justify-content: flex-end
-  padding: 40px
+  justify-content: center
+  border: 1px solid $button
+  margin-top: 20px
+  width: 400px
 
 .sheet__body
   color: $light-body-color
@@ -73,31 +77,33 @@
     padding: 20px
 
 .sheet__button
-  background: transparent
-  font-size: 17px
-  line-height: 1.8rem
-  color: $button
+  background: $button
+  color: white
+  font-size: 18px
+  line-height: 2.8rem
   border: 0
   margin: 0
   display: block
   width: 200px
   text-align: center
   text-transform: uppercase
-  margin-top: 20px
   border: 1px solid $button
   padding: 7px
-  float: right
   transition: all 0.3s ease-in
   cursor: pointer
-  margin-left: 40px
+  flex: 2
 
   &:hover
-    background: $button
-    color: white
+    background: transparent
     transition: all 0.3s ease-in
+    color: $button
+    border: 1px solid $button
 
 .sheet__composition
   margin: 20px 0
+
+.sheet__description
+  margin-right: 50px
 
 @media screen and (min-width: 900px)
   .sheet
@@ -123,3 +129,9 @@
 
   .sheet__gallery
     width: 50%
+
+@media screen and (max-width: 400px)
+  .sheet__gallery-image
+    margin: 30px 0
+  .sheet__buy
+    width: 100%

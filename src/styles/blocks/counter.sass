@@ -4,15 +4,20 @@
     color: $base-body-color
     align-items: center
     justify-content: center
-    margin-top: 10px
+    flex: 1
+    font-size: 28px
 
     &__button
         border: none
-        font-size: 12px
+        font-size: 28px
         background-color: white
+        margin: 0 5px
 
-    &__title
-        font-size: 12px
-        text-transform: uppercase
-        width: 100%
-        text-align: center
+@media screen and (max-width: 400px)
+    .Counter
+        font-size: 24px
+        
+        &__button
+            font-size: 2Opx
+            margin: 0 
+

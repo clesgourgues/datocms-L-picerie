@@ -1,3 +1,7 @@
+@media screen and (min-width: 401px)
+    .container__sidebar-hamburger
+      display: none
+
 @media screen and (max-width: 899px)
   .container__sidebar
     box-sizing: border-box
@@ -16,6 +20,21 @@
 
     .container.is-open &
       transform: translate3d(0px, 0, 0)
+  
+  .container__sidebar-hamburger
+    position: absolute
+    top: 10px
+    left: 10px
+
+    a
+      display: inline-block
+      width: 25px
+      height: 25px
+      background: url('https://cdn.rawgit.com/encharm/Font-Awesome-SVG-PNG/master/black/svg/close.svg')
+      background-position: 50% 50%
+      background-repeat: no-repeat
+      background-size: contain
+      margin-bottom: 20px
 
   .container__body
     transform: translate3d(0px, 0, 0)
@@ -23,6 +42,16 @@
 
     .container.is-open &
       transform: translate3d(300px, 0, 0)
+
+@media screen and (max-width: 401px)
+  .container__sidebar
+    width: 400px
+    transform: translate3d(-400px, 0, 0)
+    padding : 0
+    display: flex
+  .sidebar
+    width: 280px
+    padding: 20px
 
 @media screen and (min-width: 900px)
   .container
