@@ -10,22 +10,35 @@ export default ({ data }) => {
   return (
     <Layout>
       <article className='sheet'>
-        <HelmetDatoCms seo={data.wine.seoMetaTags} />
-        <div className='sheet__back link'>
-          <span className='sheet__back-icon'></span>
-          <Link to={`/vins`}>Vins</Link>
-        </div>
+        {/*         <HelmetDatoCms seo={data.wine.seoMetaTags} /> */}
+        <Link to={`/vins`} className='sheet__back link'>
+          <span className='sheet__back-icon'></span> Vins
+        </Link>
         <div className='sheet__inner-product'>
-          <h1 className='sheet__title'>{data.wine.name}</h1>
-          <p className='sheet__lead'>{data.wine.description}</p>
-          <p className='sheet__lead'>
-            {data.wine.color} | {data.wine.category}
+          <h1 className='sheet__lead'>{data.wine.name}</h1>
+          <h1 className='sheet__lead'>{data.wine.millesime}</h1>
+          <p className='sheet__price'>
+            <span>{data.wine.color}</span>
+            <span> / {data.wine.appellation}</span>
           </p>
           <p className='sheet__price'>{data.wine.price} €</p>
           <div className='sheet__gallery'>
             <Img fluid={data.wine.photo.fluid} />
           </div>
-
+          <h6 className='sheet__inner-title'>Cépages</h6>
+          <div className='sheet__description'>
+            {data.wine.cepages.map((cepage, index) => (
+              <span>{index === data.wine.cepages.length - 1 ? cepage : `${cepage}, `}</span>
+            ))}
+          </div>
+          <h6 className='sheet__inner-title'>Notes de dégustation</h6>
+          <div
+            className='sheet__description'
+            dangerouslySetInnerHTML={{
+              __html: data.wine.descriptionNode.childMarkdownRemark.html
+            }}
+          />
+          {/*           <p className='sheet__description'>{data.wine.description}</p> */}
           <div className='sheet__buy'>
             <Counter quantity={quantity} setQuantity={setQuantity} />
             <button
@@ -58,11 +71,16 @@ export const query = graphql`
       appellation
       millesime
       color
-      description
+      descriptionNode {
+        childMarkdownRemark {
+          html
+        }
+      }
       price
       slug
       id
       color
+      cepages
       photo {
         url
         fluid(maxWidth: 300, imgixParams: { fm: "jpg", auto: "compress" }) {

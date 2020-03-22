@@ -12,10 +12,9 @@ export default ({ data }) => {
     <Layout>
       <article className='sheet'>
         <HelmetDatoCms seo={data.product.seoMetaTags} />
-        <div className='sheet__back link'>
-          <span className='sheet__back-icon'></span>
-          <Link to={`/${data.product.category.slug}`}> {data.product.category.title}</Link>
-        </div>
+        <Link to={`/${data.product.category.slug}`} className='sheet__back link'>
+          <span className='sheet__back-icon'></span> {data.product.category.title}
+        </Link>
         <div className='sheet__inner-product'>
           <h1 className='sheet__lead'>{data.product.name}</h1>
           <p className='sheet__description'>{data.product.description}</p>
@@ -26,10 +25,10 @@ export default ({ data }) => {
             <Img fluid={data.product.photo.fluid} className='sheet__gallery-image' />
           </div>
           {data.product.composition && (
-            <p className='sheet__composition'>
-              Composition
-              <br /> {data.product.composition}
-            </p>
+            <>
+              <h6 className='sheet__inner-title'>Composition</h6>
+              <p className='sheet__composition'>{data.product.composition}</p>
+            </>
           )}
           {data.product.allergen && <Allergen allergens={data.product.allergen} />}
           <div className='sheet__buy'>

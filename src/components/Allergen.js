@@ -20,10 +20,10 @@ const allergenMap = {
 const Allergen = ({ allergens }) => {
   return (
     <div className='allergen'>
-      <p>Allergènes</p>
+      <h6 className='sheet__inner-title'>Allergènes</h6>
       <div className='allergen__items'>
-        {allergens.map(allergen => (
-          <div className='allergen__item'>
+        {allergens.map((allergen, index) => (
+          <div className='allergen__item' key={`allergen-${index}`}>
             <img
               src={require('../assets/' + allergen + '.png')}
               alt={`Allergène ${allergenMap[allergen]}`}
