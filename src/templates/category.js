@@ -22,30 +22,28 @@ export default ({ data }) => {
           <div className='sheet__gallery'>
             <Img fluid={data.category.coverImage.fluid} />
           </div>
-          {/*     <h1 className='sheet__title'>{data.category.title}</h1> */}
-
           <div className='products'>
             {products.edges.map(({ node: product }) => (
               <figure key={product.id} className='products__item'>
-                  <Link
-                    to={`/${data.category.slug}/${product.slug}`}
-                    className='card__image card__image-product'
-                  >
-                    <Img fluid={product.photo.fluid} className='card__image-inner'/>
-                  </Link>
-                  <figcaption className='card__caption card__caption-product'>
-                    <h6 className='card__title'>
-                      <Link to={`/${data.category.slug}/${product.slug}`}>{product.name}</Link>
-                    </h6>
-                    {isWine ? (
-                      <p>{product.price}€ /bouteille</p>
-                    ) : (
-                      <p>
-                        {product.price}€ | {product.conditionnement}
-                      </p>
-                    )}
-                  </figcaption>
-                </figure>
+                <Link
+                  to={`/${data.category.slug}/${product.slug}`}
+                  className='card__image card__image-product'
+                >
+                  <Img fluid={product.photo.fluid} className='card__image-inner' />
+                </Link>
+                <figcaption className='card__caption card__caption-product'>
+                  <h6 className='card__title'>
+                    <Link to={`/${data.category.slug}/${product.slug}`}>{product.name}</Link>
+                  </h6>
+                  {isWine ? (
+                    <p>{product.price}€ /bouteille</p>
+                  ) : (
+                    <p>
+                      {product.price}€ | {product.conditionnement}
+                    </p>
+                  )}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
@@ -70,7 +68,7 @@ export const query = graphql`
       }
       coverImage {
         url
-        fluid(maxWidth: 600, imgixParams: { fm: "jpg", auto: "compress" }) {
+        fluid(maxWidth: 600, imgixParams: { fm: "png", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
         }
       }
@@ -97,7 +95,6 @@ export const query = graphql`
         node {
           id
           slug
-          category
           price
           name
           photo {
