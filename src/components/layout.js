@@ -15,8 +15,6 @@ setConfig({ pureSFC: true });
 const TemplateWrapper = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState();
-  console.log('selectedCategory', selectedCategory);
-  console.log('showMenu', showMenu);
   return (
     <StaticQuery
       query={graphql`

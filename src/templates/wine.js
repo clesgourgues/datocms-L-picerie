@@ -12,7 +12,8 @@ export default ({ data }) => {
       <article className='sheet'>
         {/*         <HelmetDatoCms seo={data.wine.seoMetaTags} /> */}
         <Link to={`/vins`} className='sheet__back link'>
-          <span className='sheet__back-icon'></span> Vins
+          <span className='sheet__back-icon'></span>
+          <span className='sheet__back-text'>Vins</span>
         </Link>
         <div className='sheet__inner-product'>
           <h1 className='sheet__lead'>{data.wine.name}</h1>
