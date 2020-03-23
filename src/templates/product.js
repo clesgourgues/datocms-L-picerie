@@ -20,33 +20,35 @@ export default ({ data }) => {
           <h1 className='sheet__lead'>{data.product.name}</h1>
           <p className='sheet__description'>{data.product.description}</p>
           <p className='sheet__price'>
-            {data.product.price} € | {data.product.conditionnement}
+            {data.product.price.toFixed(2)} € | {data.product.conditionnement}
           </p>
           <div className='sheet__gallery'>
             <Img fluid={data.product.photo.fluid} className='sheet__gallery-image' />
           </div>
-          {data.product.composition && (
-            <>
-              <h6 className='sheet__inner-title'>Composition</h6>
-              <p className='sheet__composition'>{data.product.composition}</p>
-            </>
-          )}
-          {data.product.allergen && <Allergen allergens={data.product.allergen} />}
-          <div className='sheet__buy'>
-            <Counter quantity={quantity} setQuantity={setQuantity} />
-            <button
-              className='sheet__button snipcart-add-item'
-              data-item-id={data.product.id}
-              data-item-price={data.product.price}
-              data-item-image={data.product.photo.url}
-              data-item-name={data.product.name}
-              data-item-url={`/produits/${data.product.slug}`}
-              data-item-description={data.product.description}
-              data-item-quantity={quantity}
-              data-item-has-taxes-included='true'
-            >
-              Ajouter au panier
-            </button>
+          <div className='sheet__infos'>
+            {data.product.composition && (
+              <>
+                <h6 className='sheet__inner-title'>Composition</h6>
+                <p className='sheet__composition'>{data.product.composition}</p>
+              </>
+            )}
+            {data.product.allergen && <Allergen allergens={data.product.allergen} />}
+            <div className='sheet__buy'>
+              <Counter quantity={quantity} setQuantity={setQuantity} />
+              <button
+                className='sheet__button snipcart-add-item'
+                data-item-id={data.product.id}
+                data-item-price={data.product.price}
+                data-item-image={data.product.photo.url}
+                data-item-name={data.product.name}
+                data-item-url={`/produits/${data.product.slug}`}
+                data-item-description={data.product.description}
+                data-item-quantity={quantity}
+                data-item-has-taxes-included='true'
+              >
+                Ajouter au panier
+              </button>
+            </div>
           </div>
         </div>
       </article>

@@ -32,11 +32,6 @@ const TemplateWrapper = ({ children }) => {
               ...GatsbyDatoCmsSeoMetaTags
             }
             copyright
-            logo {
-              fluid(maxWidth: 450, imgixParams: { fm: "png", auto: "compress" }) {
-                ...GatsbyDatoCmsSizes
-              }
-            }
           }
           allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {
             edges {
@@ -77,7 +72,9 @@ const TemplateWrapper = ({ children }) => {
                 />
               </div>
               <Link to='/'>
-                <Img fluid={data.datoCmsHome.logo.fluid} />
+                <div className='sidebar__logo__container'>
+                  <img src={logo} alt='Logo Maison Lascombes' className='sidebar__logo' />
+                </div>
               </Link>
               <ul className='sidebar__menu'>
                 {data.allDatoCmsCategory.edges.map(({ node: category }) => (
@@ -99,9 +96,6 @@ const TemplateWrapper = ({ children }) => {
                   <Link to='/about'>A propos</Link>
                 </li>
               </ul>
-              <div className='sidebar__logo__container'>
-                <img src={logo} alt='Logo Maison Lascombes' className='sidebar__logo' />
-              </div>
               <p className='sidebar__social'>
                 {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
                   <a

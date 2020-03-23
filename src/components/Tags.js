@@ -1,7 +1,7 @@
 import React from 'react';
 import { isSelected } from '../helpers/category';
 
-const Tags = ({ tags, filters, applyFilters }) => {
+const Tags = ({ tags, filters, toggleFilters }) => {
   return (
     <div className='tags'>
       {tags.map(tag => (
@@ -9,7 +9,7 @@ const Tags = ({ tags, filters, applyFilters }) => {
           className={`tags__tag ${
             isSelected(tag, filters) ? 'tags__tag-selected' : 'tags__tag-unselected'
           }`}
-          onClick={() => applyFilters(tag)}
+          onClick={() => toggleFilters(tag)}
           key={tag}
         >
           {tag}

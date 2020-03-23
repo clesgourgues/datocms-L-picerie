@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
 import { graphql, Link } from 'gatsby';
@@ -9,7 +9,7 @@ import { setConfig } from 'react-hot-loader';
 
 setConfig({ pureSFC: true });
 
-const wineFilters = ['color', 'appellation', 'millesime'];
+const wineFilters = ['color', 'appellation', 'millesime', 'bio'];
 
 export default ({ data }) => {
   const isWine = data.category.slug === 'vins';
@@ -17,22 +17,29 @@ export default ({ data }) => {
   const [products, setProducts] = useState(isWine ? data.wines.edges : data.products.edges);
   const [filters, setFilters] = useState([]);
 
-  const applyFilters = filterValue => {
+  const toggleFilters = filterValue => {
     const newFilters = filters.includes(filterValue)
       ? filters.filter(filter => filter !== filterValue)
       : [...filters, filterValue];
     setFilters(newFilters);
-    const filteredProducts = allProducts.filter(({ node: product }) =>
-      isFilteredProduct(product, newFilters)
-    );
-    setProducts(filteredProducts);
   };
+
+  useEffect(() => {
+    const filteredProducts =
+      filters.length === 0
+        ? allProducts
+        : allProducts.filter(({ node: product }) => isFilteredProduct(product, filters));
+    setProducts(filteredProducts);
+  }, [filters]);
 
   return (
     <Layout>
       <article className='sheet'>
         <HelmetDatoCms seo={data.category.seoMetaTags} />
         <div className='sheet__inner'>
+          <div className='sheet__gallery-category'>
+            <Img fluid={data.category.coverImage.fluid} />
+          </div>
           <p className='sheet__lead'>{data.category.excerpt}</p>
           <div
             className='sheet__body'
@@ -58,19 +65,27 @@ export default ({ data }) => {
                 <Tags
                   tags={getTags(allProducts, filter)}
                   filters={filters}
-                  applyFilters={applyFilters}
+                  toggleFilters={toggleFilters}
                   key={filter}
                 />
               ))}
             </div>
           )}
-
-          <div className='sheet__gallery'>
-            <Img fluid={data.category.coverImage.fluid} />
-          </div>
           <div className='products'>
             {products.map(({ node: product }) => (
               <figure key={product.id} className='products__item'>
+                {product.bio && (
+                  <div className='products__item-bios'>
+                    {product.bio.map(b => (
+                      <img
+                        src={require('../assets/' + b + '.jpg')}
+                        alt={b}
+                        className='products__item-bio'
+                        key={b}
+                      />
+                    ))}
+                  </div>
+                )}
                 <Link
                   to={`/${data.category.slug}/${product.slug}`}
                   className='card__image card__image-product'
@@ -79,13 +94,15 @@ export default ({ data }) => {
                 </Link>
                 <figcaption className='card__caption card__caption-product'>
                   <h6 className='card__title'>
-                    <Link to={`/${data.category.slug}/${product.slug}`}>{product.name}</Link>
+                    <Link to={`/${data.category.slug}/${product.slug}`}>
+                      {product.name} {product.millesime}
+                    </Link>
                   </h6>
                   {isWine ? (
-                    <p>{product.price}€ /bouteille</p>
+                    <p>{product.price.toFixed(2)}€ /bouteille</p>
                   ) : (
                     <p>
-                      {product.price}€ | {product.conditionnement}
+                      {product.price.toFixed(2)}€ | {product.conditionnement}
                     </p>
                   )}
                 </figcaption>
@@ -114,12 +131,15 @@ export const query = graphql`
       }
       coverImage {
         url
-        fluid(maxWidth: 600, imgixParams: { fm: "png", auto: "compress" }) {
+        fluid(maxWidth: 500, imgixParams: { fm: "png", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
         }
       }
     }
-    products: allDatoCmsProduct(filter: { category: { slug: { eq: $slug } } }) {
+    products: allDatoCmsProduct(
+      sort: { fields: [price], order: ASC }
+      filter: { category: { slug: { eq: $slug } } }
+    ) {
       edges {
         node {
           id
@@ -136,7 +156,7 @@ export const query = graphql`
         }
       }
     }
-    wines: allDatoCmsWine {
+    wines: allDatoCmsWine(sort: { fields: [price], order: ASC }) {
       edges {
         node {
           id
@@ -146,6 +166,7 @@ export const query = graphql`
           color
           appellation
           millesime
+          bio
           photo {
             url
             fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {

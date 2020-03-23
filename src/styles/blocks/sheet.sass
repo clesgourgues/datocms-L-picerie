@@ -3,6 +3,14 @@
   background-color: white
   min-height: 100vh
 
+.sheet__responsive
+  display: flex
+  align-items: center
+  margin-top: 30px
+
+.sheet__infos
+  width: 100%
+
 .sheet__back
   display: flex
   color: $dark-body-color
@@ -47,8 +55,11 @@
 
 .sheet__description
 
-.sheet__price
+.sheet__color
   font-size: 20px
+
+.sheet__bios
+  margin-top: 10px
 
 .sheet__inner-product
   margin-top: 30px
@@ -73,13 +84,18 @@
   font-family: $title
   line-height: 40px
 
+.sheet__gallery-category
+  margin: 0 auto 20px auto
+
 .sheet__gallery
-  max-width: 350px
   margin: 0 auto
+  height: 100%
+  width: 100%
 
   &-image
     margin: 50px auto
     border: 1px solid $border-color
+    position: relative
 
 .sheet__buy
   display: flex
@@ -179,6 +195,9 @@
     blockquote
       padding-left: 40px
 
+  .sheet__gallery-category
+    width: 150px
+
   .sheet__gallery
     width: 50%
 
@@ -191,3 +210,9 @@
     font-size: 16px
   .sheet__description
     margin-right: 0
+  .sheet__responsive
+    flex-direction: column
+
+@media screen and (max-width: 1100px)
+  .sheet__responsive
+    flex-direction: column
