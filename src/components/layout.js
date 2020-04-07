@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql } from 'gatsby';
 import Helmet from 'react-helmet';
@@ -6,15 +6,18 @@ import { HelmetDatoCms } from 'gatsby-source-datocms';
 import { setConfig } from 'react-hot-loader';
 import logo from '../assets/logo_maison_lascombes.svg';
 import Cart from '../components/Cart';
+import Welcome from '../components/Welcome';
 import AppContext from '../context/AppContext';
 
 import '../styles/index.sass';
+import 'react-responsive-modal/styles.css';
 
 setConfig({ pureSFC: true });
 
 const TemplateWrapper = ({ children }) => {
   const [showMenu, setShowMenu] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState();
+
   return (
     <StaticQuery
       query={graphql`
@@ -32,6 +35,14 @@ const TemplateWrapper = ({ children }) => {
               ...GatsbyDatoCmsSeoMetaTags
             }
             copyright
+            logo {
+              fluid(maxWidth: 450, imgixParams: { fm: "png", auto: "compress" }) {
+                ...GatsbyDatoCmsSizes
+              }
+            }
+          }
+          datoCmsWelcome {
+            title
           }
           allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {
             edges {
@@ -61,6 +72,12 @@ const TemplateWrapper = ({ children }) => {
                 favicon={data.datoCmsSite.faviconMetaTags}
                 seo={data.datoCmsHome.seoMetaTags}
               />
+              <Welcome
+                hasSeenModal={context.hasSeenModal || context.cart}
+                setModalSeen={context.setModalSeen}
+                text={data.datoCmsWelcome.title}
+                logo={data.datoCmsHome.logo}
+              />
               <Cart cart={context.cart} />
               <div className='container__sidebar'>
                 <div className='sidebar'>
@@ -73,11 +90,18 @@ const TemplateWrapper = ({ children }) => {
                       }}
                     />
                   </div>
-                  <Link to='/'>
-                    <div className='sidebar__logo__container'>
+                  <div
+                    className='sidebar__logo__container'
+                    onClick={e => {
+                      e.preventDefault();
+                      setSelectedCategory(null);
+                      setShowMenu(!showMenu);
+                    }}
+                  >
+                    <Link to='/'>
                       <img src={logo} alt='Logo Maison Lascombes' className='sidebar__logo' />
-                    </div>
-                  </Link>
+                    </Link>
+                  </div>
                   <ul className='sidebar__menu'>
                     {data.allDatoCmsCategory.edges.map(({ node: category }) => (
                       <li

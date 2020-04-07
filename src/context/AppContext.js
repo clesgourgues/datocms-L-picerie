@@ -8,7 +8,7 @@ const defaultState = {
 const AppContext = React.createContext(defaultState);
 
 const AppProvider = ({ children }) => {
-  const [hasSeenModal, setSeenModal] = useState(false);
+  const [hasSeenModal, setModalSeen] = useState(false);
   const [cart, setCart] = useState(null);
 
   const snipcartReady = async () => {
@@ -30,7 +30,8 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         cart,
-        hasSeenModal
+        hasSeenModal,
+        setModalSeen: () => setModalSeen(true)
       }}
     >
       {children}

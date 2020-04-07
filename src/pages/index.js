@@ -2,11 +2,10 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Masonry from 'react-masonry-component';
 import Img from 'gatsby-image';
-import Layout from '../components/layout';
-import Separator from '../components/Separator';
 
 const IndexPage = ({ data }) => (
-  <>
+  <div>
+    <Img className='showcase__image' fluid={data.datoCmsHome.logo.fluid} />
     <div
       className='showcase__intro'
       dangerouslySetInnerHTML={{
@@ -20,16 +19,11 @@ const IndexPage = ({ data }) => (
             <Link to={`/${category.slug}`} className='card__image card__image-category'>
               <Img fluid={category.coverImage.fluid} />
             </Link>
-            {/*             <figcaption className='card__caption card__caption-category'>
-              <div className='card__description'>
-                <p>{category.excerpt}</p>
-              </div>
-            </figcaption> */}
           </figure>
         </div>
       ))}
     </Masonry>
-  </>
+  </div>
 );
 
 export default IndexPage;
@@ -55,6 +49,11 @@ export const query = graphql`
       introTextNode {
         childMarkdownRemark {
           html
+        }
+      }
+      logo {
+        fluid(maxWidth: 450, imgixParams: { fm: "png", auto: "compress" }) {
+          ...GatsbyDatoCmsSizes
         }
       }
     }
