@@ -1,12 +1,19 @@
 import React from 'react';
+import { getTotalItems } from '../helpers/cart';
 
-const Cart = () => (
+const Cart = ({ cart }) => (
   <div className='Snipcart__cart link snipcart-checkout'>
     <div className=' Snipcart-cart'></div>
     <p>
-      <span className='snipcart-items-count'></span> articles
+      {cart && cart.items.length ? (
+        <span>
+          {getTotalItems(cart.items)} {getTotalItems(cart.items) > 1 ? 'articles' : 'article'}
+        </span>
+      ) : (
+        <span>Votre panier est vide</span>
+      )}
     </p>
-    <p className='snipcart-total-price'></p>
+    {cart && cart.total > 0 && <p>{cart.total} €</p>}
   </div>
 );
 
