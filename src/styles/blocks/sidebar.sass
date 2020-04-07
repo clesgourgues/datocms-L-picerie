@@ -35,11 +35,6 @@
   font-size: 14px
   margin: 20px 0
 
-  &-selected
-    li a
-      font-weight: bold
-      color: $active-color
-
   li
     margin: 10px 0
     a
@@ -60,6 +55,10 @@
     &.link
       margin: 10px 0
 
+li.sidebar__menu-selected
+  a
+    color: $active-color
+
 .sidebar__social
   margin-bottom: 20px
 
@@ -75,5 +74,3 @@
   align-items: center
   justify-content: center
   padding: 20px
-
-.sidebar__logo

@@ -3,9 +3,10 @@ import { Link, graphql } from 'gatsby';
 import Masonry from 'react-masonry-component';
 import Img from 'gatsby-image';
 import Layout from '../components/layout';
+import Separator from '../components/Separator';
 
 const IndexPage = ({ data }) => (
-  <Layout>
+  <>
     <div
       className='showcase__intro'
       dangerouslySetInnerHTML={{
@@ -28,7 +29,7 @@ const IndexPage = ({ data }) => (
         </div>
       ))}
     </Masonry>
-  </Layout>
+  </>
 );
 
 export default IndexPage;

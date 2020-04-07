@@ -33,85 +33,83 @@ export default ({ data }) => {
   }, [filters]);
 
   return (
-    <Layout>
-      <article className='sheet'>
-        <HelmetDatoCms seo={data.category.seoMetaTags} />
-        <div className='sheet__inner'>
-          <div className='sheet__gallery-category'>
-            <Img fluid={data.category.coverImage.fluid} />
-          </div>
-          <p className='sheet__lead'>{data.category.excerpt}</p>
-          <div
-            className='sheet__body'
-            dangerouslySetInnerHTML={{
-              __html: data.category.descriptionNode.childMarkdownRemark.html
-            }}
-          />
-          {isWine && (
-            <div className='sheet__tags'>
-              <div className='sheet__cancel'>
-                <span className='sheet__cancel-icon'></span>
-                <span
-                  onClick={() => {
-                    setFilters([]);
-                    setProducts(isWine ? data.wines.edges : data.products.edges);
-                  }}
-                  className='sheet__cancel-title'
-                >
-                  Supprimer les filtres
-                </span>
-              </div>
-              {wineFilters.map(filter => (
-                <Tags
-                  tags={getTags(allProducts, filter)}
-                  filters={filters}
-                  toggleFilters={toggleFilters}
-                  key={filter}
-                />
-              ))}
+    <article className='sheet'>
+      <HelmetDatoCms seo={data.category.seoMetaTags} />
+      <div className='sheet__inner'>
+        <div className='sheet__gallery-category'>
+          <Img fluid={data.category.coverImage.fluid} />
+        </div>
+        <p className='sheet__lead'>{data.category.excerpt}</p>
+        <div
+          className='sheet__body'
+          dangerouslySetInnerHTML={{
+            __html: data.category.descriptionNode.childMarkdownRemark.html
+          }}
+        />
+        {isWine && (
+          <div className='sheet__tags'>
+            <div className='sheet__cancel'>
+              <span className='sheet__cancel-icon'></span>
+              <span
+                onClick={() => {
+                  setFilters([]);
+                  setProducts(isWine ? data.wines.edges : data.products.edges);
+                }}
+                className='sheet__cancel-title'
+              >
+                Supprimer les filtres
+              </span>
             </div>
-          )}
-          <div className='products'>
-            {products.map(({ node: product }) => (
-              <figure key={product.id} className='products__item'>
-                {product.bio && (
-                  <div className='products__item-bios'>
-                    {product.bio.map(b => (
-                      <img
-                        src={require('../assets/' + b + '.jpg')}
-                        alt={b}
-                        className='products__item-bio'
-                        key={b}
-                      />
-                    ))}
-                  </div>
-                )}
-                <Link
-                  to={`/${data.category.slug}/${product.slug}`}
-                  className='card__image card__image-product'
-                >
-                  <Img fluid={product.photo.fluid} className='card__image-inner' />
-                </Link>
-                <figcaption className='card__caption card__caption-product'>
-                  <h6 className='card__title'>
-                    <Link to={`/${data.category.slug}/${product.slug}`}>
-                      {product.name} {product.millesime}
-                    </Link>
-                  </h6>
-                  {isWine ? (
-                    <p>{product.price.toFixed(2)}€ /bouteille</p>
-                  ) : (
-                    <p>
-                      {product.price.toFixed(2)}€ | {product.conditionnement}
-                    </p>
-                  )}
-                </figcaption>
-              </figure>
+            {wineFilters.map(filter => (
+              <Tags
+                tags={getTags(allProducts, filter)}
+                filters={filters}
+                toggleFilters={toggleFilters}
+                key={filter}
+              />
             ))}
           </div>
+        )}
+        <div className='products'>
+          {products.map(({ node: product }) => (
+            <figure key={product.id} className='products__item'>
+              {product.bio && (
+                <div className='products__item-bios'>
+                  {product.bio.map(b => (
+                    <img
+                      src={require('../assets/' + b + '.jpg')}
+                      alt={b}
+                      className='products__item-bio'
+                      key={b}
+                    />
+                  ))}
+                </div>
+              )}
+              <Link
+                to={`/${data.category.slug}/${product.slug}`}
+                className='card__image card__image-product'
+              >
+                <Img fluid={product.photo.fluid} className='card__image-inner' />
+              </Link>
+              <figcaption className='card__caption card__caption-product'>
+                <h6 className='card__title'>
+                  <Link to={`/${data.category.slug}/${product.slug}`}>
+                    {product.name} {product.millesime}
+                  </Link>
+                </h6>
+                {isWine ? (
+                  <p>{product.price.toFixed(2)}€ /bouteille</p>
+                ) : (
+                  <p>
+                    {product.price.toFixed(2)}€ | {product.conditionnement}
+                  </p>
+                )}
+              </figcaption>
+            </figure>
+          ))}
         </div>
-      </article>
-    </Layout>
+      </div>
+    </article>
   );
 };
 

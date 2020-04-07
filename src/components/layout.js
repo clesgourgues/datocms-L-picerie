@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, StaticQuery, graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import { setConfig } from 'react-hot-loader';
-import Img from 'gatsby-image';
 import logo from '../assets/logo_maison_lascombes.svg';
 import Cart from '../components/Cart';
 import AppContext from '../context/AppContext';
@@ -87,6 +86,7 @@ const TemplateWrapper = ({ children }) => {
                           e.preventDefault();
                           const id = e.target.id;
                           setSelectedCategory(id);
+                          setShowMenu(!showMenu);
                         }}
                         className={
                           selectedCategory === category.title ? 'sidebar__menu-selected' : ''
@@ -97,7 +97,14 @@ const TemplateWrapper = ({ children }) => {
                         </Link>
                       </li>
                     ))}
-                    <li className='link'>
+                    <li
+                      onClick={e => {
+                        e.preventDefault();
+                        setSelectedCategory('about');
+                        setShowMenu(!showMenu);
+                      }}
+                      className={selectedCategory === 'about' ? 'sidebar__menu-selected' : ''}
+                    >
                       <Link to='/about'>A propos</Link>
                     </li>
                   </ul>
@@ -127,9 +134,6 @@ const TemplateWrapper = ({ children }) => {
                           setShowMenu(!showMenu);
                         }}
                       />
-                    </div>
-                    <div className='mobile-header__logo link snipcart-checkout Snipcart-cart'>
-                      {/*   <Link to='/'>{data.datoCmsSite.globalSeo.siteName}</Link> */}
                     </div>
                   </div>
                 </div>
