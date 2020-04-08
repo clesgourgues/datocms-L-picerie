@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
 import { graphql, Link } from 'gatsby';
-import Layout from '../components/layout';
 import Counter from '../components/Counter';
 import Allergen from '../components/Allergen';
 
@@ -44,6 +43,7 @@ export default ({ data }) => {
               data-item-description={data.product.description}
               data-item-quantity={quantity}
               data-item-has-taxes-included='true'
+              data-item-taxes='TVA 5.5%'
             >
               Ajouter au panier
             </button>

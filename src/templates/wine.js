@@ -65,6 +65,7 @@ export default ({ data }) => {
                 data-item-description={data.wine.description}
                 data-item-quantity={quantity}
                 data-item-has-taxes-included='true'
+                data-item-taxes='TVA 20%'
               >
                 Ajouter au panier
               </button>
