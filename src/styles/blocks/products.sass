@@ -6,7 +6,8 @@
     flex-wrap: wrap
     flex-direction: row
 
-.products__item
+.products__item,
+.products__item-wine
     margin-bottom: 30px
     position: relative
     height: 100%
@@ -48,7 +49,8 @@
         justify-content: space-around
         align-items: center
         height: 100%
-    .products__item
+    .products__item,
+    .products__item-wine
         flex: 1
         width: 100%
 
@@ -62,9 +64,17 @@
         width: (100% / 2)
         padding-left: 15px
 
+    .products__item-wine
+        box-sizing: border-box
+        width: (100% / 3)
+        padding-left: 15px
+
 @media screen and (min-width: 1400px)
     .products__item
         width: (100% / 3)
+
+    .products__item-wine
+        width: (100% / 4)
 
 @media screen and (min-width: 900px)
     .products

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
 import { graphql, Link } from 'gatsby';
-import Layout from '../components/layout';
 import Counter from '../components/Counter';
 
 export default ({ data }) => {
@@ -36,14 +35,16 @@ export default ({ data }) => {
           </div>
         )}
         <div className='sheet__responsive'>
-          <div className='sheet__gallery'>
+          <div className='sheet__gallery-wine'>
             <Img fluid={data.wine.photo.fluid} />
           </div>
           <div className='sheet__infos'>
             <h6 className='sheet__inner-title'>Cépages</h6>
             <div className='sheet__description'>
               {data.wine.cepages.map((cepage, index) => (
-                <span>{index === data.wine.cepages.length - 1 ? cepage : `${cepage}, `}</span>
+                <span key={index}>
+                  {index === data.wine.cepages.length - 1 ? cepage : `${cepage}, `}
+                </span>
               ))}
             </div>
             <h6 className='sheet__inner-title'>Notes de dégustation</h6>

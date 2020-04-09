@@ -20,33 +20,35 @@ export default ({ data }) => {
         <p className='sheet__price'>
           {data.product.price.toFixed(2)} € | {data.product.conditionnement}
         </p>
-        <div className='sheet__gallery'>
-          <Img fluid={data.product.photo.fluid} className='sheet__gallery-image' />
-        </div>
-        <div className='sheet__infos'>
-          {data.product.composition && (
-            <>
-              <h6 className='sheet__inner-title'>Composition</h6>
-              <p className='sheet__composition'>{data.product.composition}</p>
-            </>
-          )}
-          {data.product.allergen && <Allergen allergens={data.product.allergen} />}
-          <div className='sheet__buy'>
-            <Counter quantity={quantity} setQuantity={setQuantity} />
-            <button
-              className='sheet__button snipcart-add-item'
-              data-item-id={data.product.id}
-              data-item-price={data.product.price}
-              data-item-image={data.product.photo.url}
-              data-item-name={data.product.name}
-              data-item-url={`/produits/${data.product.slug}`}
-              data-item-description={data.product.description}
-              data-item-quantity={quantity}
-              data-item-has-taxes-included='true'
-              data-item-taxes='TVA 5.5%'
-            >
-              Ajouter au panier
-            </button>
+        <div className='sheet__responsive'>
+          <div className='sheet__gallery'>
+            <Img fluid={data.product.photo.fluid} className='sheet__gallery-image' />
+          </div>
+          <div className='sheet__infos'>
+            {data.product.composition && (
+              <>
+                <h6 className='sheet__inner-title'>Composition</h6>
+                <p className='sheet__composition'>{data.product.composition}</p>
+              </>
+            )}
+            {data.product.allergen && <Allergen allergens={data.product.allergen} />}
+            <div className='sheet__buy'>
+              <Counter quantity={quantity} setQuantity={setQuantity} />
+              <button
+                className='sheet__button snipcart-add-item'
+                data-item-id={data.product.id}
+                data-item-price={data.product.price}
+                data-item-image={data.product.photo.url}
+                data-item-name={data.product.name}
+                data-item-url={`/produits/${data.product.slug}`}
+                data-item-description={data.product.description}
+                data-item-quantity={quantity}
+                data-item-has-taxes-included='true'
+                data-item-taxes='TVA 5.5%'
+              >
+                Ajouter au panier
+              </button>
+            </div>
           </div>
         </div>
       </div>

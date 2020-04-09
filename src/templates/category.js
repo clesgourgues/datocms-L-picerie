@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import Img from 'gatsby-image';
 import { graphql, Link } from 'gatsby';
-import Layout from '../components/layout';
 import Tags from '../components/Tags';
 import { getTags, isFilteredProduct } from '../helpers/category';
 import { setConfig } from 'react-hot-loader';
@@ -72,7 +71,10 @@ export default ({ data }) => {
         )}
         <div className='products'>
           {products.map(({ node: product }) => (
-            <figure key={product.id} className='products__item'>
+            <figure
+              key={product.id}
+              className={`${isWine ? 'products__item-wine' : 'products__item'}`}
+            >
               {product.bio && (
                 <div className='products__item-bios'>
                   {product.bio.map(b => (
