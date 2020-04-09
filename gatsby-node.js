@@ -14,7 +14,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
-        allDatoCmsProduct {
+        allDatoCmsProduct(filter: { online: { eq: true } }) {
           edges {
             node {
               slug
@@ -24,7 +24,7 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
-        allDatoCmsWine {
+        allDatoCmsWine(filter: { online: { eq: true } }) {
           edges {
             node {
               slug

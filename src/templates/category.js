@@ -136,7 +136,7 @@ export const query = graphql`
     }
     products: allDatoCmsProduct(
       sort: { fields: [price], order: ASC }
-      filter: { category: { slug: { eq: $slug } } }
+      filter: { category: { slug: { eq: $slug } }, online: { eq: true } }
     ) {
       edges {
         node {
