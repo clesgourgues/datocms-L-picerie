@@ -17,9 +17,6 @@ export default ({ data }) => {
       <div className='sheet__inner-product'>
         <h1 className='sheet__lead'>{data.product.name}</h1>
         <p className='sheet__description'>{data.product.description}</p>
-        <p className='sheet__price'>
-          {data.product.price.toFixed(2)} € | {data.product.conditionnement}
-        </p>
         <div className='sheet__responsive'>
           <div className='sheet__gallery'>
             <Img fluid={data.product.photo.fluid} className='sheet__gallery-image' />
@@ -32,6 +29,10 @@ export default ({ data }) => {
               </>
             )}
             {data.product.allergen && <Allergen allergens={data.product.allergen} />}
+            <h6 className='sheet__inner-title'>Prix</h6>
+            <p className='sheet__price'>
+              {data.product.price.toFixed(2)} € | {data.product.conditionnement}
+            </p>
             <div className='sheet__buy'>
               <Counter quantity={quantity} setQuantity={setQuantity} />
               <button

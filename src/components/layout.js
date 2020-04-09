@@ -121,16 +121,6 @@ const TemplateWrapper = ({ children }) => {
                         </Link>
                       </li>
                     ))}
-                    <li
-                      onClick={e => {
-                        e.preventDefault();
-                        setSelectedCategory('about');
-                        setShowMenu(!showMenu);
-                      }}
-                      className={selectedCategory === 'about' ? 'sidebar__menu-selected' : ''}
-                    >
-                      <Link to='/about'>A propos</Link>
-                    </li>
                   </ul>
                   <p className='sidebar__social'>
                     {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
@@ -139,11 +129,39 @@ const TemplateWrapper = ({ children }) => {
                         href={profile.url}
                         target='blank'
                         className={`social social--${profile.profileType.toLowerCase()}`}
-                      >
-                        {' '}
-                      </a>
+                      ></a>
                     ))}
                   </p>
+                  <ul className='sidebar__menu'>
+                    <li
+                      onClick={e => {
+                        e.preventDefault();
+                        setSelectedCategory('about');
+                        setShowMenu(!showMenu);
+                      }}
+                      className={
+                        selectedCategory === 'about'
+                          ? 'sidebar__menu-selected sidebar__menu-aside'
+                          : 'sidebar__menu-aside'
+                      }
+                    >
+                      <Link to='/about'>A propos</Link>
+                    </li>
+                    <li
+                      onClick={e => {
+                        e.preventDefault();
+                        setSelectedCategory('cgu');
+                        setShowMenu(!showMenu);
+                      }}
+                      className={
+                        selectedCategory === 'cgu'
+                          ? 'sidebar__menu-selected sidebar__menu-aside'
+                          : 'sidebar__menu-aside'
+                      }
+                    >
+                      <Link to='/cgu'>Nos conditions générales d'utilisation</Link>
+                    </li>
+                  </ul>
                   <div className='sidebar__copyright'>{data.datoCmsHome.copyright}</div>
                 </div>
               </div>
