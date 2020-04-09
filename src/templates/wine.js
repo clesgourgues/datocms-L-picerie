@@ -8,7 +8,7 @@ export default ({ data }) => {
   const [quantity, setQuantity] = useState(1);
   return (
     <article className='sheet'>
-      {/*         <HelmetDatoCms seo={data.wine.seoMetaTags} /> */}
+      <HelmetDatoCms seo={data.wine.seoMetaTags} />
       <Link to={`/vins`} className='sheet__back link'>
         <span className='sheet__back-icon'></span>
         <span className='sheet__back-text'>Vins</span>
