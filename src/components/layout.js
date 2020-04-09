@@ -7,6 +7,7 @@ import { setConfig } from 'react-hot-loader';
 import logo from '../assets/logo_maison_lascombes.svg';
 import Cart from '../components/Cart';
 import Welcome from '../components/Welcome';
+import Protect from '../components/Protect';
 import AppContext from '../context/AppContext';
 
 import '../styles/index.sass';
@@ -72,12 +73,13 @@ const TemplateWrapper = ({ children }) => {
                 favicon={data.datoCmsSite.faviconMetaTags}
                 seo={data.datoCmsHome.seoMetaTags}
               />
-              <Welcome
+              {/*               <Welcome
                 hasSeenModal={context.hasSeenModal || context.cart}
                 setModalSeen={context.setModalSeen}
                 text={data.datoCmsWelcome.title}
                 logo={data.datoCmsHome.logo}
-              />
+              /> */}
+              <Protect logo={data.datoCmsHome.logo} />
               <Cart cart={context.cart} />
               <div className='container__sidebar'>
                 <div className='sidebar'>
