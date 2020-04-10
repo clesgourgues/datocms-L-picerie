@@ -7,7 +7,7 @@
   position: relative
 
 .card__image-inner
-  border: 1px solid $border-color
+  border: 3px solid black
 
 .card__image-product
 
@@ -42,15 +42,14 @@
 
 .card__caption
   z-index: 3
-  background-color: #fff
+  background-color: black
+  padding: 10px
+  color: white
 
   &-category
     position: absolute
     top: 50px
     left: 20px
-
-  &-product
-    margin-top: 10px
 
 .card__title
   line-height: 16px
@@ -59,11 +58,11 @@
     text-decoration: none
     font-weight: bold
     font-size: 14px
-    color: $dark-body-color
+    color: white
     line-height: 16px
 
     &:hover
-      border-bottom: dotted 1px #9055a2
+      color: $light-bg-color
 
 .card__description
   color: $dark-body-color

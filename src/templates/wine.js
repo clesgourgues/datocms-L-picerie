@@ -36,7 +36,7 @@ export default ({ data }) => {
         )}
         <div className='sheet__responsive'>
           <div className='sheet__gallery-wine'>
-            <Img fluid={data.wine.photo.fluid} />
+            <Img fluid={data.wine.photo.fluid} className='sheet__gallery-image' />
           </div>
           <div className='sheet__infos'>
             <h6 className='sheet__inner-title'>Cépages</h6>

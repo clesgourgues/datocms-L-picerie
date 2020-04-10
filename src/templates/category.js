@@ -100,7 +100,7 @@ export default ({ data }) => {
                   </Link>
                 </h6>
                 {isWine ? (
-                  <p>{product.price.toFixed(2)}€ /bouteille</p>
+                  <p>{product.price.toFixed(2)}€</p>
                 ) : (
                   <p>
                     {product.price.toFixed(2)}€ | {product.conditionnement}
