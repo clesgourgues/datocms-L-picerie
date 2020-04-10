@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-responsive-modal';
-import { isValidCp, isValidFiveNumber } from '../helpers/location';
 import Img from 'gatsby-image';
 
 const Protect = ({ logo }) => {
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
   const [mdp, setMdp] = useState('');
 
   const onSubmit = e => {
@@ -13,6 +12,10 @@ const Protect = ({ logo }) => {
       setModalOpen(false);
     }
   };
+
+  useEffect(() => {
+    setTimeout(() => setModalOpen(true), 500);
+  });
 
   return (
     <Modal
@@ -23,9 +26,7 @@ const Protect = ({ logo }) => {
       center
       showCloseIcon={false}
       closeOnOverlayClick={false}
-      classNames={{
-        overlay: 'customOverlay'
-      }}
+      classNames={{ overlay: 'customOverlay' }}
     >
       <div className='welcome'>
         <Img className='welcome__logo' fluid={logo.fluid} />
