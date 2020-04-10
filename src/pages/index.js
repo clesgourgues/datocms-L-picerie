@@ -2,10 +2,11 @@ import React from 'react';
 import { Link, graphql } from 'gatsby';
 import Masonry from 'react-masonry-component';
 import Img from 'gatsby-image';
+import logo from '../assets/logo_epicerie.png';
 
 const IndexPage = ({ data }) => (
-  <div>
-    <Img className='showcase__image' fluid={data.datoCmsHome.logo.fluid} />
+  <div className='showcase__container'>
+    <img src={logo} alt='Logo Lépicerie bordelaise' className='showcase__logo' />
     <div
       className='showcase__intro'
       dangerouslySetInnerHTML={{
@@ -49,11 +50,6 @@ export const query = graphql`
       introTextNode {
         childMarkdownRemark {
           html
-        }
-      }
-      logo {
-        fluid(maxWidth: 450, imgixParams: { fm: "png", auto: "compress" }) {
-          ...GatsbyDatoCmsSizes
         }
       }
     }

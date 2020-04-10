@@ -34,17 +34,17 @@
 .sidebar__menu
   font-size: 14px
   margin: 20px 0
+  box-sizing: border-box
+  transition: all .35s ease
 
   li
-    margin: 10px 0
-
     a
       text-decoration: none
-      display: block
-      padding-left: 20px
       color: $base-body-color
       position: relative
       text-transform: uppercase
+      display: inline-block
+      padding: .3em .6em
 
       &:hover
         color: $active-color
@@ -68,8 +68,8 @@ li.sidebar__menu-selected
 .sidebar__social
   margin-bottom: 20px
 
-  .social
-    margin: 0 5px
+.social
+  margin: 0 5px
 
 .sidebar__copyright
   color: $light-body-color
@@ -83,3 +83,7 @@ li.sidebar__menu-selected
 
 .sidebar__logo
   width: 100%
+
+@media screen and (max-width: 401px)
+  .sidebar__logo
+    width: 150px

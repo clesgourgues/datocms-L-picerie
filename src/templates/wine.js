@@ -13,7 +13,7 @@ export default ({ data }) => {
         <span className='sheet__back-icon'></span>
         <span className='sheet__back-text'>Vins</span>
       </Link>
-      <div className='sheet__inner-product'>
+      <div className='sheet__inner-product-wine'>
         <h1 className='sheet__lead'>
           {data.wine.name} {data.wine.millesime}
         </h1>

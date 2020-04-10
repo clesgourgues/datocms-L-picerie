@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-responsive-modal';
-import Img from 'gatsby-image';
+import logo from '../assets/logo_epicerie.png';
 
-const Protect = ({ logo }) => {
+const Protect = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [mdp, setMdp] = useState('');
 
@@ -14,7 +14,7 @@ const Protect = ({ logo }) => {
   };
 
   useEffect(() => {
-    let timer = setTimeout(() => setModalOpen(true), 500);
+    let timer = setTimeout(() => setModalOpen(true), 300);
     return () => {
       clearTimeout(timer);
     };
@@ -32,7 +32,7 @@ const Protect = ({ logo }) => {
       classNames={{ overlay: 'customOverlay' }}
     >
       <div className='welcome'>
-        <Img className='welcome__logo' fluid={logo.fluid} />
+        <img src={logo} alt='Logo Epicerie bordelaise' />
         <p className='welcome__validation'>Site en construction</p>
         <form className='welcome__form'>
           <input

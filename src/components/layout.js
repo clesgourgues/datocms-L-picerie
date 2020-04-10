@@ -4,7 +4,7 @@ import { Link, StaticQuery, graphql } from 'gatsby';
 import Helmet from 'react-helmet';
 import { HelmetDatoCms } from 'gatsby-source-datocms';
 import { setConfig } from 'react-hot-loader';
-import logo from '../assets/logo_maison_lascombes.svg';
+import logo from '../assets/logo_epicerie.png';
 import Cart from '../components/Cart';
 import Welcome from '../components/Welcome';
 import Protect from '../components/Protect';
@@ -37,11 +37,6 @@ const TemplateWrapper = ({ children }) => {
               ...GatsbyDatoCmsSeoMetaTags
             }
             copyright
-            logo {
-              fluid(maxWidth: 450, imgixParams: { fm: "png", auto: "compress" }) {
-                ...GatsbyDatoCmsSizes
-              }
-            }
           }
           datoCmsWelcome {
             title
@@ -80,7 +75,7 @@ const TemplateWrapper = ({ children }) => {
                 text={data.datoCmsWelcome.title}
                 logo={data.datoCmsHome.logo}
               /> */}
-              <Protect logo={data.datoCmsHome.logo} />
+              <Protect />
               <Cart cart={context.cart} />
               <div className='container__sidebar'>
                 <div className='sidebar'>

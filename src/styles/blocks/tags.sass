@@ -4,14 +4,19 @@
     flex-direction: row
     flex-wrap: wrap
     .tags__tag
-        color: white
+        color: $light-body-color
         padding: 3px 10px
         font-size: 10px
         margin-right: 8px
         border-radius: 20px
         margin-top: 5px
         cursor: pointer
+        border: 1px solid $active-color
+        &-hover
+            background-color: $active-color
+            color: $light-bg-color
         &-unselected
-            background-color: $border-color
-        &-selected
             background-color: $light-bg-color
+        &-selected
+            background-color: $active-color
+            color: $light-bg-color

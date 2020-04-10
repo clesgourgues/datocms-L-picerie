@@ -7,9 +7,13 @@
   position: relative
 
 .card__image-inner
-  border: 3px solid black
+  border: 2px solid black
 
-.card__image-product
+.card__image-category
+  img
+    &:hover
+      filter: hue-rotate(180deg)
+      -webkit-filter: hue-rotate(180deg)
 
   &:before, &:after
     position: absolute

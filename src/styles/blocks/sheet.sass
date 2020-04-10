@@ -55,7 +55,7 @@
   display: inline-block
 
 .sheet__back-text
-  padding: 4px 0 0 4px
+  padding: 0 4px
 
 .sheet__description
 
@@ -64,9 +64,6 @@
 
 .sheet__bios
   margin-top: 10px
-
-.sheet__inner-product
-  margin-top: 0px
 
 .sheet__inner-title
   font-family: Passion One
@@ -90,6 +87,7 @@
   line-height: 40px
   margin-bottom: 10px
   margin-top: 20px
+  position: relative
 
 .sheet__gallery-category
   margin: 0 auto 20px auto
@@ -104,7 +102,7 @@
 
   &-image
     margin: 50px auto
-    border: 3px solid black
+    border: 2px solid black
     position: relative
 
 .sheet__buy
@@ -185,9 +183,9 @@
   flex: 2
 
   &:hover
-    background: transparent
+    background: $active-color
     transition: all 0.3s ease-in
-    color: $button
+    color: white
     border: none
 
 .sheet__composition
@@ -227,6 +225,8 @@
     margin: 0
 
 @media screen and (max-width: 400px)
+  .sheet
+    padding: 20px
   .sheet__gallery-image
     margin: 30px 0
   .sheet__buy
@@ -243,3 +243,9 @@
 @media screen and (max-width: 1100px)
   .sheet__responsive
     flex-direction: column
+  .sheet__inner-product
+    margin-top: 0
+
+@media screen and (min-width: 1101px)
+  .sheet__inner-product
+    margin-top: 100px
