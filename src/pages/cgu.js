@@ -5,7 +5,7 @@ const Cgu = ({ data: { cgu } }) => (
   <article className='sheet'>
     <div className='sheet__inner'>
       <div
-        className='sheet__body'
+        className='sheet__cgu'
         dangerouslySetInnerHTML={{
           __html: cgu.cguNode.childMarkdownRemark.html
         }}

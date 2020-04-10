@@ -12,7 +12,20 @@ const AppProvider = ({ children }) => {
   const [cart, setCart] = useState(null);
 
   const snipcartReady = async () => {
-    window.Snipcart.api.session.setLanguage('fr-FR');
+    window.Snipcart.api.session.setLanguage('fr', {
+      address_form: {
+        name: 'Nom complet',
+        email: 'Mail',
+        address2: 'Complément'
+      },
+      errors: {
+        no_shipping_rates_found: {
+          title: 'Nous ne pouvons pas vous livrer',
+          description:
+            "Nous livrons uniquement sur la Metropole de Bordeaux, à partir de 50€ d'achat"
+        }
+      }
+    });
     window.Snipcart.store.subscribe(async () => {
       const store = await window.Snipcart.store.getState();
       const cart = store.cart ? store.cart : null;
