@@ -9,6 +9,7 @@ import Cart from '../components/Cart';
 import Welcome from '../components/Welcome';
 import Protect from '../components/Protect';
 import AppContext from '../context/AppContext';
+import Separator from '../components/Separator';
 
 import '../styles/index.sass';
 import 'react-responsive-modal/styles.css';

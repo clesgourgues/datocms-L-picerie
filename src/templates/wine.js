@@ -58,7 +58,7 @@ export default ({ data }) => {
               <Counter quantity={quantity} setQuantity={setQuantity} />
               <button
                 className='sheet__button snipcart-add-item'
-                data-item-id={data.wine.id}
+                data-item-id={data.wine.ref}
                 data-item-price={data.wine.price}
                 data-item-image={data.wine.photo.url}
                 data-item-name={data.wine.name}
@@ -96,6 +96,7 @@ export const query = graphql`
       price
       slug
       id
+      ref
       color
       bio
       cepages

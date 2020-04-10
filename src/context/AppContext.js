@@ -13,6 +13,9 @@ const AppProvider = ({ children }) => {
 
   const snipcartReady = async () => {
     window.Snipcart.api.session.setLanguage('fr', {
+      actions: {
+        continue_shopping: 'Continuer les achats'
+      },
       address_form: {
         name: 'Nom complet',
         email: 'Mail',

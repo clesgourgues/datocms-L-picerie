@@ -37,7 +37,7 @@ export default ({ data }) => {
               <Counter quantity={quantity} setQuantity={setQuantity} />
               <button
                 className='sheet__button snipcart-add-item'
-                data-item-id={data.product.id}
+                data-item-id={data.product.ref}
                 data-item-price={data.product.price}
                 data-item-image={data.product.photo.url}
                 data-item-name={data.product.name}
@@ -74,6 +74,7 @@ export const query = graphql`
       price
       slug
       id
+      ref
       minimum
       allergen
       photo {

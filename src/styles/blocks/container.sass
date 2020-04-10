@@ -3,9 +3,15 @@
     display: none
 
 @media screen and (max-width: 899px)
+  .container__mobile-header
+    background-image: url('../assets/bg.png')
+    background-position: 100% 100%
+    background-repeat: repeat-X
+    background-size: 4px
+
   .container__sidebar
     box-sizing: border-box
-    width: 200px
+    width: 300px
     height: 100%
     position: fixed
     top: 0
@@ -16,7 +22,6 @@
     transform: translate3d(-300px, 0, 0)
     transition: transform 0.2s ease-in-out
     padding: 20px
-    background-color: $light-bg-color
 
     .container.is-open &
       transform: translate3d(0px, 0, 0)
@@ -49,6 +54,7 @@
     transform: translate3d(-400px, 0, 0)
     padding : 0
     display: flex
+    background-color: $light-bg-color
   .sidebar
     width: 280px
     padding: 20px
@@ -69,6 +75,10 @@
     box-sizing: border-box
     padding: 40px
     background-color: $light-bg-color
+    background-image: url('../assets/bg-horizontal.png')
+    background-position: 100%
+    background-repeat: repeat-Y
+    background-size: 10px
 
   .container__body
     flex: 1
