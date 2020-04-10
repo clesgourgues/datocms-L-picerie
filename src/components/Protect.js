@@ -14,8 +14,11 @@ const Protect = ({ logo }) => {
   };
 
   useEffect(() => {
-    setTimeout(() => setModalOpen(true), 500);
-  });
+    let timer = setTimeout(() => setModalOpen(true), 500);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <Modal
