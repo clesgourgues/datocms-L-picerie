@@ -70,45 +70,49 @@ export default ({ data }) => {
           </div>
         )}
         <div className='products'>
-          {products.map(({ node: product }) => (
-            <figure
-              key={product.id}
-              className={`${isWine ? 'products__item-wine' : 'products__item'}`}
-            >
-              {product.bio && (
-                <div className='products__item-bios'>
-                  {product.bio.map(b => (
-                    <img
-                      src={require('../assets/' + b + '.jpg')}
-                      alt={b}
-                      className='products__item-bio'
-                      key={b}
-                    />
-                  ))}
-                </div>
-              )}
-              <Link
-                to={`/${data.category.slug}/${product.slug}`}
-                className='card__image card__image-product'
+          {products.length === 0 ? (
+            <p className='sheet__lead'>Bientôt...</p>
+          ) : (
+            products.map(({ node: product }) => (
+              <figure
+                key={product.id}
+                className={`${isWine ? 'products__item-wine' : 'products__item'}`}
               >
-                <Img fluid={product.photo.fluid} className='card__image-inner' />
-              </Link>
-              <figcaption className='card__caption card__caption-product'>
-                <h6 className='card__title'>
-                  <Link to={`/${data.category.slug}/${product.slug}`}>
-                    {product.name} {product.millesime}
-                  </Link>
-                </h6>
-                {isWine ? (
-                  <p>{product.price.toFixed(2)}€</p>
-                ) : (
-                  <p>
-                    {product.price.toFixed(2)}€ | {product.conditionnement}
-                  </p>
+                {product.bio && (
+                  <div className='products__item-bios'>
+                    {product.bio.map(b => (
+                      <img
+                        src={require('../assets/' + b + '.jpg')}
+                        alt={b}
+                        className='products__item-bio'
+                        key={b}
+                      />
+                    ))}
+                  </div>
                 )}
-              </figcaption>
-            </figure>
-          ))}
+                <Link
+                  to={`/${data.category.slug}/${product.slug}`}
+                  className='card__image card__image-product'
+                >
+                  <Img fluid={product.photo.fluid} className='card__image-inner' />
+                </Link>
+                <figcaption className='card__caption card__caption-product'>
+                  <h6 className='card__title'>
+                    <Link to={`/${data.category.slug}/${product.slug}`}>
+                      {product.name} {product.millesime}
+                    </Link>
+                  </h6>
+                  {isWine ? (
+                    <p>{product.price.toFixed(2)}€</p>
+                  ) : (
+                    <p>
+                      {product.price.toFixed(2)}€ | {product.conditionnement}
+                    </p>
+                  )}
+                </figcaption>
+              </figure>
+            ))
+          )}
         </div>
       </div>
     </article>
