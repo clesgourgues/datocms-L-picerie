@@ -102,7 +102,7 @@ export const query = graphql`
       cepages
       photo {
         url
-        fluid(maxWidth: 300, imgixParams: { fm: "jpg", auto: "compress" }) {
+        fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {
           ...GatsbyDatoCmsSizes
         }
       }
