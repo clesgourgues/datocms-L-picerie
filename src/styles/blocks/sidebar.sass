@@ -32,7 +32,7 @@
       margin-bottom: 0
 
 .sidebar__menu
-  font-size: 14px
+  font-size: 18px
   margin: 20px 0
   box-sizing: border-box
   transition: all .35s ease
@@ -45,6 +45,7 @@
       text-transform: uppercase
       display: inline-block
       padding: .3em .6em
+      font-family: $title
 
       &:hover
         color: $active-color
@@ -56,10 +57,11 @@
     &.link
       margin: 10px 0
 
-li.sidebar__menu-aside
-  font-size: 12px
-  text-transform: none !important
-  margin: 0
+.sidebar__menu-aside
+  a
+    font-size: 13px
+    text-transform: none !important
+    font-family: $text !important
 
 li.sidebar__menu-selected
   a

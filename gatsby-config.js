@@ -2,7 +2,7 @@ require('dotenv').config();
 
 module.exports = {
   siteMetadata: {
-    title: `Creative Portfolio`
+    siteUrl: `https://lepiceriebordeaux.fr`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -23,7 +23,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`Passion One`, `Lato`],
+        fonts: [`Bebas Neue`, `Lato`],
         display: 'swap'
       }
     },
@@ -31,6 +31,35 @@ module.exports = {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: require.resolve(`./src/components/layout`)
+      }
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        output: `/sitemap.xml`,
+        query: `
+        {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allSitePage {
+            edges {
+              node {
+                path
+              }
+            }
+          }
+      }`,
+        serialize: ({ site, allSitePage }) =>
+          allSitePage.edges.map(edge => {
+            return {
+              url: site.siteMetadata.siteUrl + edge.node.path,
+              changefreq: `weekly`,
+              priority: 0.7
+            };
+          })
       }
     }
   ]
