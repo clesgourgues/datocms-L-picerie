@@ -65,9 +65,6 @@ const TemplateWrapper = ({ children }) => {
           {context => (
             <div className={`container ${showMenu ? 'is-open' : ''}`}>
               <Helmet htmlAttributes={{ lang: 'fr-FR' }} />
-              {/*               <Helmet>
-                <script src={withPrefix('cookies.js')} />
-              </Helmet> */}
               <HelmetDatoCms
                 favicon={data.datoCmsSite.faviconMetaTags}
                 seo={data.datoCmsHome.seoMetaTags}

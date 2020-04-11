@@ -41,10 +41,7 @@
     a
       text-decoration: none
       color: $base-body-color
-      position: relative
       text-transform: uppercase
-      display: inline-block
-      padding: .3em .6em
       font-family: $title
 
       &:hover
@@ -84,8 +81,10 @@ li.sidebar__menu-selected
   padding: 20px
 
 .sidebar__logo
-  width: 100%
+  width: 200px
 
 @media screen and (max-width: 401px)
   .sidebar__logo
     width: 150px
+  .sidebar__logo__container
+    padding: 0

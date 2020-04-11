@@ -9,18 +9,15 @@
 .card__image-inner
   border: 2px solid black
   img
-    filter: grayscale(0.4)
-    transition: 0.5s ease-in-out
+    transition: transform 0.3s ease !important
     &:hover
-      filter: grayscale(0)
-      transition: 0.5s ease-in-out
+      transform: scale(1.4)
 
 .card__image-category
-  img
-    transition: 0.5s ease-in-out
-    &:hover
-      transform: scale(1.2, 1.2)
-      transition: 0.5s ease-in-out
+  transition: transform .3s
+
+  &:hover
+    transform: scale(1.4)
 
 .card__caption
   z-index: 3
