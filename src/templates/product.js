@@ -44,7 +44,7 @@ export default ({ data }) => {
                 data-item-url={`/${data.product.category.slug}/${data.product.slug}`}
                 data-item-description={data.product.description}
                 data-item-quantity={quantity}
-                data-item-has-taxes-included={true}
+                data-item-has-taxes-included='true'
                 data-item-taxes='TVA 5.5% (PRODUITS ALIMENTAIRES)'
               >
                 Ajouter au panier
