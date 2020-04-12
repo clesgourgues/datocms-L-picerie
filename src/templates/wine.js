@@ -6,7 +6,6 @@ import Counter from '../components/Counter';
 
 export default ({ data }) => {
   const [quantity, setQuantity] = useState(1);
-  console.log(data);
   return (
     <article className='sheet'>
       <HelmetDatoCms seo={data.wine.seoMetaTags} />
@@ -69,8 +68,8 @@ export default ({ data }) => {
                 data-item-url={`/vins/${data.wine.slug}`}
                 data-item-description={data.wine.description}
                 data-item-quantity={quantity}
-                data-item-has-taxes-included='true'
-                data-item-taxes='TVA 20%'
+                data-item-has-taxes-included={true}
+                data-item-taxes='TVA 20% (VINS ET LIVRAISON)'
               >
                 Ajouter au panier
               </button>

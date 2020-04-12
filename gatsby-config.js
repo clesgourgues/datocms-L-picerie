@@ -15,12 +15,6 @@ module.exports = {
       }
     },
     {
-      resolve: 'gatsby-plugin-snipcartv3',
-      options: {
-        apiKey: process.env.GATSBY_SNIPCART_API_KEY
-      }
-    },
-    {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
         fonts: [`Bebas Neue`, `Lato`],

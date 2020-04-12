@@ -15,6 +15,16 @@ const IndexPage = ({ data }) => (
         __html: data.datoCmsHome.introTextNode.childMarkdownRemark.html
       }}
     />
+    {data.datoCmsInfoFlash.content && (
+      <div className='infos'>
+        <div className='infos__container'>
+          <p>{data.datoCmsInfoFlash.content}</p>
+          {data.datoCmsInfoFlash.content2 && <p>{data.datoCmsInfoFlash.content2}</p>}
+          {data.datoCmsInfoFlash.content3 && <p>{data.datoCmsInfoFlash.content3}</p>}
+          {data.datoCmsInfoFlash.content4 && <p>{data.datoCmsInfoFlash.content4}</p>}
+        </div>
+      </div>
+    )}
     <Masonry className='showcase'>
       {data.allDatoCmsCategory.edges.map(({ node: category }) => (
         <div key={category.id} className='showcase__item'>
@@ -47,6 +57,12 @@ export const query = graphql`
           }
         }
       }
+    }
+    datoCmsInfoFlash {
+      content
+      content2
+      content3
+      content4
     }
     datoCmsHome {
       introTextNode {

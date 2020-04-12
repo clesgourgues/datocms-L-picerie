@@ -20,6 +20,10 @@ export default function HTML(props) {
         })(window,document,'script','dataLayer','GTM-5HLMJ5D');</script>`
           }}
         />
+        <link
+          rel='stylesheet'
+          href='https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.css'
+        />
       </head>
       <body {...props.bodyAttributes}>
         {props.preBodyComponents}
@@ -35,6 +39,8 @@ export default function HTML(props) {
         `
           }}
         />
+        <div hidden id='snipcart' data-api-key={process.env.GATSBY_SNIPCART_API_KEY}></div>
+        <script src='https://cdn.snipcart.com/themes/v3.0.11/default/snipcart.js'></script>
       </body>
     </html>
   );

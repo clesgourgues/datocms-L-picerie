@@ -19,7 +19,8 @@ const AppProvider = ({ children }) => {
       address_form: {
         name: 'Nom complet',
         email: 'Mail',
-        address2: 'Complément'
+        address2: 'Apt',
+        province: 'Complément'
       },
       errors: {
         no_shipping_rates_found: {
@@ -29,10 +30,10 @@ const AppProvider = ({ children }) => {
         }
       }
     });
+    //window.Snipcart.api.session.configure('show_cart_automatically', false);
     window.Snipcart.store.subscribe(async () => {
       const store = await window.Snipcart.store.getState();
       const cart = store.cart ? store.cart : null;
-      console.log(cart);
       setCart(cart);
     });
   };
