@@ -32,6 +32,7 @@ const AppProvider = ({ children }) => {
     window.Snipcart.store.subscribe(async () => {
       const store = await window.Snipcart.store.getState();
       const cart = store.cart ? store.cart : null;
+      console.log(cart);
       setCart(cart);
     });
   };

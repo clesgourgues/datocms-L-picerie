@@ -9,7 +9,6 @@ import Cart from '../components/Cart';
 import Welcome from '../components/Welcome';
 import Protect from '../components/Protect';
 import AppContext from '../context/AppContext';
-import Separator from '../components/Separator';
 
 import '../styles/index.sass';
 import 'react-responsive-modal/styles.css';
@@ -70,7 +69,7 @@ const TemplateWrapper = ({ children }) => {
                 seo={data.datoCmsHome.seoMetaTags}
               />
               {/*               <Welcome
-                hasSeenModal={context.hasSeenModal || context.cart}
+                hasSeenModal={context.hasSeenModal || context.cart.token}
                 setModalSeen={context.setModalSeen}
                 text={data.datoCmsWelcome.title}
                 logo={data.datoCmsHome.logo}
@@ -119,6 +118,20 @@ const TemplateWrapper = ({ children }) => {
                         </Link>
                       </li>
                     ))}
+                    <li
+                      onClick={e => {
+                        e.preventDefault();
+                        setSelectedCategory('contact');
+                        setShowMenu(!showMenu);
+                      }}
+                      className={
+                        selectedCategory === 'contact'
+                          ? 'sidebar__menu-selected sidebar__menu-contact'
+                          : 'sidebar__menu-contact'
+                      }
+                    >
+                      <Link to='/contact'>Nous contacter</Link>
+                    </li>
                   </ul>
                   <p className='sidebar__social'>
                     {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (

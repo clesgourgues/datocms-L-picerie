@@ -3,9 +3,11 @@ import { Link, graphql } from 'gatsby';
 import Masonry from 'react-masonry-component';
 import Img from 'gatsby-image';
 import logo from '../assets/logo_epicerie.png';
+import { HelmetDatoCms } from 'gatsby-source-datocms';
 
 const IndexPage = ({ data }) => (
   <div className='showcase__container'>
+    <HelmetDatoCms seo={data.datoCmsHome.seoMetaTags} />
     <img src={logo} alt='Logo Lépicerie bordelaise' className='showcase__logo' />
     <div
       className='showcase__intro'
@@ -51,6 +53,9 @@ export const query = graphql`
         childMarkdownRemark {
           html
         }
+      }
+      seoMetaTags {
+        ...GatsbyDatoCmsSeoMetaTags
       }
     }
   }
