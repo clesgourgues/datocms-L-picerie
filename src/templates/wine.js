@@ -6,12 +6,16 @@ import Counter from '../components/Counter';
 
 export default ({ data }) => {
   const [quantity, setQuantity] = useState(1);
+  console.log(data);
   return (
     <article className='sheet'>
       <HelmetDatoCms seo={data.wine.seoMetaTags} />
       <Link to={`/vins`} className='sheet__back link'>
         <span className='sheet__back-icon'></span>
-        <span className='sheet__back-text'>Vins</span>
+        <Img
+          fluid={data.category.edges[0].node.coverImage.fluid}
+          className='sheet__back-category'
+        />
       </Link>
       <div className='sheet__inner-product-wine'>
         <h1 className='sheet__lead'>
@@ -80,6 +84,18 @@ export default ({ data }) => {
 
 export const query = graphql`
   query WineQuery($slug: String!) {
+    category: allDatoCmsCategory(filter: { slug: { eq: "vins" } }) {
+      edges {
+        node {
+          coverImage {
+            url
+            fluid(maxWidth: 200, imgixParams: { fm: "png", auto: "compress" }) {
+              ...GatsbyDatoCmsSizes
+            }
+          }
+        }
+      }
+    }
     wine: datoCmsWine(slug: { eq: $slug }) {
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags

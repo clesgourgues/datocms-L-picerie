@@ -12,7 +12,7 @@ export default ({ data }) => {
       <HelmetDatoCms seo={data.product.seoMetaTags} />
       <Link to={`/${data.product.category.slug}`} className='sheet__back link'>
         <span className='sheet__back-icon'></span>
-        <span className='sheet__back-text'>{data.product.category.title}</span>
+        <Img fluid={data.product.category.coverImage.fluid} className='sheet__back-category' />
       </Link>
       <div className='sheet__inner-product'>
         <h1 className='sheet__lead'>{data.product.name}</h1>
@@ -67,6 +67,12 @@ export const query = graphql`
       category {
         title
         slug
+        coverImage {
+          url
+          fluid(maxWidth: 200, imgixParams: { fm: "png", auto: "compress" }) {
+            ...GatsbyDatoCmsSizes
+          }
+        }
       }
       conditionnement
       description
