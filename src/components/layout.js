@@ -68,13 +68,11 @@ const TemplateWrapper = ({ children }) => {
                 favicon={data.datoCmsSite.faviconMetaTags}
                 seo={data.datoCmsHome.seoMetaTags}
               />
-              {/*               <Welcome
-                hasSeenModal={context.hasSeenModal || context.cart.token}
+              <Welcome
+                hasSeenModal={context.hasSeenModal || (context.cart && context.cart.token)}
                 setModalSeen={context.setModalSeen}
                 text={data.datoCmsWelcome.title}
-                logo={data.datoCmsHome.logo}
-              /> */}
-              <Protect />
+              />
               <Cart cart={context.cart} />
               <div className='container__sidebar'>
                 <div className='sidebar'>

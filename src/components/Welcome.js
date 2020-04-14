@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Modal } from 'react-responsive-modal';
 import { isValidCp, isValidFiveNumber } from '../helpers/location';
-import Img from 'gatsby-image';
+import logo from '../assets/logo_epicerie.png';
 
-const Welcome = ({ hasSeenModal, setModalSeen, text, logo }) => {
+const Welcome = ({ hasSeenModal, setModalSeen, text }) => {
   const [modalOpen, setModalOpen] = useState(false);
   const [cp, setCp] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -35,11 +35,9 @@ const Welcome = ({ hasSeenModal, setModalSeen, text, logo }) => {
       center
     >
       <div className='welcome'>
-        <Img className='welcome__logo' fluid={logo.fluid} />
+        <img src={logo} alt='Logo Epicerie bordelaise' className='welcome__logo' />
         <div className='welcome__intro'>{text}</div>
-        <p className='welcome__validation'>
-          Nous livrons uniquement sur <span style={{ color: 'white' }}>Bordeaux Métropole.</span>
-        </p>
+        <p className='welcome__validation'>Nous livrons uniquement sur Bordeaux Métropole.</p>
         <p className='welcome__validation'>
           En cas de doute, vous pouvez valider votre code postal :
         </p>

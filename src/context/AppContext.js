@@ -17,10 +17,11 @@ const AppProvider = ({ children }) => {
         continue_shopping: 'Continuer les achats'
       },
       address_form: {
-        name: 'Nom complet',
+        name: 'Nom',
         email: 'Mail',
+        address1: 'Adresse',
         address2: 'Apt',
-        province: 'Complément'
+        province: 'Tel. mobile pour la livraison'
       },
       errors: {
         no_shipping_rates_found: {
