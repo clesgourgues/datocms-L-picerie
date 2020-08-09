@@ -7,7 +7,6 @@ import { setConfig } from 'react-hot-loader';
 import logo from '../assets/logo_epicerie.png';
 import Cart from '../components/Cart';
 import Welcome from '../components/Welcome';
-import Protect from '../components/Protect';
 import AppContext from '../context/AppContext';
 
 import '../styles/index.sass';

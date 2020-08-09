@@ -2,9 +2,10 @@ const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
 exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
+  createRedirect({ fromPath: '/*', toPath: '/', isPermanent: true });
 
-  return new Promise((resolve, reject) => {
+  /*   return new Promise((resolve, reject) => {
     graphql(`
       {
         allDatoCmsCategory {
@@ -67,5 +68,5 @@ exports.createPages = ({ graphql, actions }) => {
         resolve();
       });
     });
-  });
+  }); */
 };

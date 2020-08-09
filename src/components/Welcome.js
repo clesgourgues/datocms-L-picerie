@@ -20,9 +20,10 @@ const Welcome = ({ hasSeenModal, setModalSeen, text }) => {
   };
 
   useEffect(() => {
-    if (!hasSeenModal) {
-      setTimeout(() => setModalOpen(true), 1000);
-    }
+    /*     if (!hasSeenModal) {
+      setTimeout(() => setModalOpen(true), 300);
+    } */
+    setModalOpen(true);
   });
 
   return (
@@ -33,11 +34,15 @@ const Welcome = ({ hasSeenModal, setModalSeen, text }) => {
         setModalSeen(true);
       }}
       center
+      closeOnEsc={false}
+      closeOnOverlayClick={false}
+      showCloseIcon={false}
+      styles={{ overlay: { backgroundColor: 'black' } }}
     >
       <div className='welcome'>
         <img src={logo} alt='Logo Epicerie bordelaise' className='welcome__logo' />
         <div className='welcome__intro'>{text}</div>
-        <p className='welcome__validation'>Nous livrons uniquement sur Bordeaux Métropole.</p>
+        {/*         <p className='welcome__validation'>Nous livrons uniquement sur Bordeaux Métropole.</p>
         <p className='welcome__validation'>
           En cas de doute, vous pouvez valider votre code postal :
         </p>
@@ -60,7 +65,7 @@ const Welcome = ({ hasSeenModal, setModalSeen, text }) => {
         </form>
         <p className='welcome__confirmation'>
           {submitted && <span className='welcome__validation'>{message}</span>}
-        </p>
+        </p> */}
       </div>
     </Modal>
   );
